@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Geo-Coded Field Observations Management - Watershed Decision Support</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-tertiary-container": "#ffaec6",
+                "on-secondary": "#ffffff",
+                "surface-container-low": "#eef6e7",
+                "tertiary": "#6b1d3d",
+                "border-strong": "#717a6d",
+                "status-review": "#ed6c02",
+                "outline": "#717a6d",
+                "surface-tint": "#2a6b2c",
+                "status-valid": "#2e7d32",
+                "on-primary-fixed": "#002203",
+                "on-tertiary-fixed": "#3e001d",
+                "status-inside": "#0288d1",
+                "border-subtle": "#c0c9bb",
+                "surface-container": "#e8f1e1",
+                "surface-variant": "#dde5d6",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "primary-container": "#1b5e20",
+                "secondary": "#01629e",
+                "on-secondary-container": "#004c7d",
+                "outline-variant": "#c0c9bb",
+                "primary-fixed-dim": "#91d78a",
+                "status-outside": "#7b1fa2",
+                "tertiary-container": "#883454",
+                "inverse-surface": "#2b3328",
+                "error-container": "#ffdad6",
+                "inverse-on-surface": "#ebf3e4",
+                "on-secondary-fixed-variant": "#004a79",
+                "surface-dim": "#d4ddce",
+                "tertiary-fixed": "#ffd9e2",
+                "on-primary-container": "#90d689",
+                "on-primary-fixed-variant": "#0c5216",
+                "secondary-fixed-dim": "#9acbff",
+                "on-tertiary-fixed-variant": "#7a2949",
+                "primary-fixed": "#acf4a4",
+                "on-surface-variant": "#41493e",
+                "on-secondary-fixed": "#001d34",
+                "on-primary": "#ffffff",
+                "status-missing": "#757575",
+                "tertiary-fixed-dim": "#ffb1c8",
+                "primary": "#00450d",
+                "on-surface": "#161d14",
+                "on-tertiary": "#ffffff",
+                "secondary-fixed": "#cfe5ff",
+                "surface": "#f7fbf1",
+                "inverse-primary": "#91d78a",
+                "on-error-container": "#93000a",
+                "secondary-container": "#7cbeff",
+                "surface-container-high": "#e2ebdc",
+                "surface-container-highest": "#dde5d6",
+                "on-background": "#161d14",
+                "on-error": "#ffffff",
+                "surface-bright": "#f4fced",
+                "status-suspicious": "#d32f2f",
+                "background": "#f4fced"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "margin-md": "16px",
+                "gutter": "12px",
+                "panel-gap": "4px",
+                "unit": "4px",
+                "margin-sm": "8px",
+                "sidebar-w": "60px",
+                "sidebar-expanded": "240px"
+        },
+        "fontFamily": {
+                "mono-data": [
+                        "jetbrainsMono"
+                ],
+                "headline-lg": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "display": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "body-sm": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "Inter"
+                ],
+                "label-md": [
+                        "Inter"
+                ],
+                "headline-sm": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "mono-data": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "22px",
+                        {
+                                "lineHeight": "28px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display": [
+                        "30px",
+                        {
+                                "lineHeight": "36px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "15px",
+                        {
+                                "lineHeight": "22px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "18px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-sm": [
+                        "10px",
+                        {
+                                "lineHeight": "12px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-md": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body { background-color: #f7fbf1; }
+        /* Map custom fonts if not loading properly in some envs */
+        .font-mono-data { font-family: 'JetBrains Mono', monospace; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen overflow-hidden flex flex-col font-body-sm text-body-sm">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-md h-12 bg-surface border-b border-subtle">
+<div class="flex items-center gap-margin-md">
+<span class="font-headline-md text-headline-md font-extrabold text-primary">Watershed Decision Support</span>
+<div class="hidden md:flex gap-margin-sm h-full pt-1">
+<a class="h-full flex items-center px-2 text-on-surface-variant font-label-md text-label-md hover:bg-surface-container transition-colors duration-150 ease-in-out" href="#">Dashboard</a>
+<a class="h-full flex items-center px-2 text-on-surface-variant font-label-md text-label-md hover:bg-surface-container transition-colors duration-150 ease-in-out" href="#">GIS Explorer</a>
+<a class="h-full flex items-center px-2 text-on-surface-variant font-label-md text-label-md hover:bg-surface-container transition-colors duration-150 ease-in-out" href="#">Reports</a>
+</div>
+</div>
+<div class="flex items-center gap-margin-sm">
+<!-- Global MWS Selector -->
+<div class="relative hidden lg:block mr-2">
+<select class="pl-2 pr-8 py-1 h-8 bg-surface-container border border-outline rounded-DEFAULT text-on-surface font-label-md focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none cursor-pointer">
+<option value="all">All MWS</option>
+<option selected="" value="mws-44a-9">MWS-44A-9</option>
+<option value="mws-44a-10">MWS-44A-10</option>
+<option value="mws-44b-1">MWS-44B-1</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">arrow_drop_down</span>
+</div>
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="pl-8 pr-2 py-1 h-8 bg-surface-container border border-outline rounded-DEFAULT text-on-surface text-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none w-48 transition-all" placeholder="Search..." type="text"/>
+</div>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container rounded-DEFAULT transition-colors duration-150"><span class="material-symbols-outlined text-[20px]">notifications</span></button>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container rounded-DEFAULT transition-colors duration-150"><span class="material-symbols-outlined text-[20px]">help</span></button>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container rounded-DEFAULT transition-colors duration-150"><span class="material-symbols-outlined text-[20px]">account_circle</span></button>
+</div>
+</nav>
+<div class="flex h-full pt-12">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full z-40 flex flex-col pt-12 bg-surface-container border-r border-subtle w-sidebar-expanded hidden xl:flex">
+<div class="p-margin-md border-b border-subtle">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Shiggaon Taluk</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Haveri District</p>
+</div>
+<nav class="flex-1 overflow-y-auto py-2">
+<a class="flex items-center gap-3 px-margin-md py-2 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a>
+<a class="flex items-center gap-3 px-margin-md py-2 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined text-[20px]">map</span><span class="font-label-md text-label-md">GIS Explorer</span></a>
+<a class="flex items-center gap-3 px-margin-md py-2 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined text-[20px]">layers</span><span class="font-label-md text-label-md">LULC Analysis</span></a>
+<a class="flex items-center gap-3 px-margin-md py-2 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined text-[20px]">opacity</span><span class="font-label-md text-label-md">Water Quality</span></a>
+<a class="flex items-center gap-3 px-margin-md py-2 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined text-[20px]">sensors</span><span class="font-label-md text-label-md">IoT Monitoring</span></a>
+<a class="flex items-center gap-3 px-margin-md py-2 bg-primary-container text-on-primary-container font-semibold border-l-4 border-primary transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined text-[20px] fill">image</span><span class="font-label-md text-label-md">Geo-Coded Images</span></a>
+<a class="flex items-center gap-3 px-margin-md py-2 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined text-[20px]">qr_code_2</span><span class="font-label-md text-label-md">Watersheds</span></a>
+<a class="flex items-center gap-3 px-margin-md py-2 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined text-[20px]">assessment</span><span class="font-label-md text-label-md">Reports</span></a>
+<a class="flex items-center gap-3 px-margin-md py-2 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="font-label-md text-label-md">Settings</span></a>
+</nav>
+</aside>
+<!-- Main Content Area (Fluid) -->
+<main class="flex-1 flex flex-col xl:ml-sidebar-expanded min-w-0 h-full p-panel-gap bg-surface-dim">
+<div class="flex-1 flex flex-col lg:flex-row gap-panel-gap min-h-0">
+<!-- Center: Image Grid -->
+<div class="flex-1 flex flex-col bg-surface-container border border-subtle min-w-0 rounded-DEFAULT shadow-sm">
+<div class="h-12 border-b border-subtle flex items-center justify-between px-margin-md bg-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">photo_library</span>
+<span class="font-headline-sm text-headline-sm text-primary">Field Observations</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant font-mono-data text-mono-data rounded-full ml-2">24 Pending</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-lowest border border-subtle rounded-DEFAULT p-0.5">
+<button class="p-1.5 bg-primary text-on-primary rounded-[2px] hover:bg-primary-container hover:text-on-primary-container transition-colors"><span class="material-symbols-outlined text-[18px]">grid_view</span></button>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container rounded-[2px] transition-colors"><span class="material-symbols-outlined text-[18px]">view_list</span></button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-margin-md">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 gap-margin-md">
+<!-- Image Card 1 -->
+<div class="bg-surface border-2 border-primary rounded-DEFAULT overflow-hidden flex flex-col cursor-pointer shadow-md ring-1 ring-primary/20 transition-all">
+<div class="relative aspect-video bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A rugged field photograph showing a newly constructed earthen check dam in a semi-arid landscape. The dry, cracked earth is visible in the foreground, with sparse green vegetation clinging to the edges of the structure. The lighting is harsh midday sun, typical of a field survey, highlighting the textures of the soil and stones. The image has a documentary, technical aesthetic suitable for environmental monitoring in a professional UI context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNJTUmiFThN_TKwgex90pu39hqsuCq6iGay24MjdQEXMDkSQ6moyePmBYQqJyYF4mZ0ZBfIdrpIxPtutvUaldE2XkGFZnpaiAch9iJXD7o0bDwpu21_yymshdT3zsWreBwuHrUSss2hUCyzh6l3J_rr13yCm_jLoWlCGnHuZwBS140bTu3TWCdXA6xAlsGFlMf0jNV9rLQikdu1o8xNrD7ShjNZ8vlsO0lP1KMC6bnlk2v_gFo_jCYoQ"/>
+<div class="absolute top-2 left-2 bg-surface/95 backdrop-blur-sm border border-status-inside/30 px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-status-inside"></div>
+<span class="font-label-sm text-label-sm text-status-inside font-bold uppercase tracking-wider">INSIDE</span>
+</div>
+<div class="absolute top-2 right-2 bg-surface/95 backdrop-blur-sm border border-status-valid/30 px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-status-valid"></div>
+<span class="font-label-sm text-label-sm text-status-valid font-bold uppercase tracking-wider">VALID GPS</span>
+</div>
+</div>
+<div class="p-3 border-t border-subtle bg-primary-container/10">
+<div class="flex justify-between items-center mb-2">
+<span class="font-mono-data text-mono-data text-on-surface font-semibold">OBS-2023-441</span>
+<span class="font-label-sm text-label-sm text-primary font-bold bg-primary/10 px-2 py-1 rounded-sm">CHECK DAM</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate text-xs flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">calendar_today</span> 2023-10-24 14:32</span>
+<span class="font-mono-data text-mono-data text-primary text-xs flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">grass</span> Agri</span>
+</div>
+</div>
+</div>
+<!-- Image Card 2 -->
+<div class="bg-surface border border-subtle hover:border-outline hover:shadow-md rounded-DEFAULT overflow-hidden flex flex-col cursor-pointer transition-all opacity-80 hover:opacity-100">
+<div class="relative aspect-video bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A field photo of a dry riverbed showing significant soil erosion on the banks. The exposed roots of a large tree are visible, indicating recent high-water flow or ongoing degradation. The overall color palette is earthy, with muted browns and dull greens under an overcast sky. The image serves as stark evidence of environmental change, captured with a straightforward, unembellished documentary style appropriate for a GIS validation interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-bSV1fnPvYVAul73AESzEJJk5dVCsfqWmMIMrf3YxRld9eL1RBRA9JcHzODMzlNGE5sgsEYr9fEZ7eCPyX2HVqecLLUHcKtegp_0NOHA-9xmBv6J9qAZp9egFcFyoTcRNfADXqcKm2ZR23o0ZRrq-ERYbcCLd6Z7GPotdL5braug1k6Gs7cXFGsE4YQfeU-Vfin26_k-nBZRZYv-caRU-eecqDSdOS7CCFCLoZdDKJZ53h4_IzE1Utw"/>
+<div class="absolute top-2 left-2 bg-surface/95 backdrop-blur-sm border border-status-inside/30 px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-status-inside"></div>
+<span class="font-label-sm text-label-sm text-status-inside font-bold uppercase tracking-wider">INSIDE</span>
+</div>
+<div class="absolute top-2 right-2 bg-surface/95 backdrop-blur-sm border border-status-suspicious/30 px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-status-suspicious animate-pulse"></div>
+<span class="font-label-sm text-label-sm text-status-suspicious font-bold uppercase tracking-wider">SUSPICIOUS GPS</span>
+</div>
+</div>
+<div class="p-3 border-t border-subtle bg-surface-container-lowest">
+<div class="flex justify-between items-center mb-2">
+<span class="font-mono-data text-mono-data text-on-surface font-semibold">OBS-2023-442</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold bg-surface-container-high px-2 py-1 rounded-sm">EROSION</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate text-xs flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">calendar_today</span> 2023-10-24 15:10</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant text-xs flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">terrain</span> Barren</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Validation Workspace -->
+<div class="w-full lg:w-[420px] xl:w-[460px] flex flex-col gap-panel-gap min-w-0">
+<!-- Metadata Section (Bento style) -->
+<div class="bg-surface border border-subtle rounded-DEFAULT flex flex-col shrink-0 shadow-sm overflow-hidden">
+<div class="h-10 border-b border-subtle flex items-center px-margin-md bg-surface-container-low">
+<span class="font-headline-sm text-headline-sm text-primary flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">info</span> Observation Metadata</span>
+</div>
+<div class="p-3 grid grid-cols-2 gap-2 border-b border-subtle bg-surface">
+<div class="bg-surface-container-lowest border border-subtle p-2 flex flex-col rounded-[4px]">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Image ID</span>
+<span class="font-mono-data text-mono-data text-on-surface mt-0.5 font-semibold">IMG_0001</span>
+</div>
+<div class="bg-surface-container-lowest border border-subtle p-2 flex flex-col rounded-[4px]">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">MWS ID</span>
+<span class="font-mono-data text-mono-data text-on-surface mt-0.5 font-semibold">MWS-44A-9</span>
+</div>
+<div class="bg-surface-container-lowest border border-subtle p-2 flex flex-col col-span-2 rounded-[4px]">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">File Name</span>
+<span class="font-mono-data text-mono-data text-on-surface mt-0.5 truncate">IMG_20231024_143201_HDR.jpg</span>
+</div>
+</div>
+<!-- Compact Table for GIS Data -->
+<div class="overflow-x-auto bg-surface">
+<table class="w-full text-left border-collapse">
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<tr class="h-10 border-b border-subtle hover:bg-surface-container-lowest transition-colors">
+<td class="pl-margin-md py-1 font-label-md text-on-surface-variant w-2/5">Coordinates</td>
+<td class="pr-margin-md py-1 font-mono-data flex items-center justify-between h-10">
+<span>15.0124°N, 75.2211°E</span>
+<span class="bg-status-valid/10 border border-status-valid/30 text-status-valid px-1.5 py-0.5 rounded-[2px] text-[10px] font-bold shadow-sm uppercase">VALID</span>
+</td>
+</tr>
+<tr class="h-10 border-b border-subtle hover:bg-surface-container-lowest transition-colors bg-surface-container-lowest/50">
+<td class="pl-margin-md py-1 font-label-md text-on-surface-variant">Capture Datetime</td>
+<td class="pr-margin-md py-1 font-mono-data">2023-10-24 14:32:01 UTC</td>
+</tr>
+<tr class="h-10 border-b border-subtle hover:bg-surface-container-lowest transition-colors">
+<td class="pl-margin-md py-1 font-label-md text-on-surface-variant">Study-Area Status</td>
+<td class="pr-margin-md py-1 font-mono-data flex items-center h-10">
+<span class="bg-status-inside/10 border border-status-inside/30 text-status-inside px-1.5 py-0.5 rounded-[2px] text-[10px] font-bold shadow-sm uppercase">INSIDE</span>
+</td>
+</tr>
+<tr class="h-10 border-b border-subtle hover:bg-surface-container-lowest transition-colors bg-surface-container-lowest/50">
+<td class="pl-margin-md py-1 font-label-md text-on-surface-variant">GPS Source</td>
+<td class="pr-margin-md py-1 font-mono-data flex items-center justify-between h-10">
+<span>EXIF</span>
+<span class="text-status-valid font-medium bg-status-valid/10 px-1.5 rounded-sm">±1.2m</span>
+</td>
+</tr>
+<tr class="h-10 hover:bg-surface-container-lowest transition-colors">
+<td class="pl-margin-md py-1 font-label-md text-on-surface-variant">LULC Class</td>
+<td class="pr-margin-md py-1 font-mono-data flex items-center justify-between h-10">
+<span>Agricultural Land</span>
+<span class="bg-status-valid/10 border border-status-valid/30 text-status-valid px-1.5 py-0.5 rounded-[2px] text-[10px] font-bold shadow-sm uppercase">89% CONF</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Human Field Validation -->
+<div class="bg-surface border border-subtle rounded-DEFAULT flex flex-col flex-1 min-h-0 shadow-sm overflow-hidden">
+<div class="h-12 border-b border-subtle flex items-center justify-between px-margin-md bg-surface-container-low">
+<span class="font-headline-sm text-headline-sm text-primary flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">fact_check</span> Field Validation Form</span>
+<div class="flex gap-3 items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">person</span> J. Doe</span>
+<span class="font-label-sm text-label-sm text-status-review px-2.5 py-1 bg-status-review/10 border border-status-review/30 rounded-full shadow-sm font-bold uppercase tracking-wider">PENDING REVIEW</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-margin-md space-y-6 bg-surface">
+<!-- Input Group -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Observation Type</label>
+<div class="relative">
+<select class="w-full h-10 px-3 bg-surface border border-outline rounded-DEFAULT text-on-surface font-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none shadow-sm transition-shadow hover:border-outline-variant cursor-pointer">
+<option>Infrastructure - Check Dam</option>
+<option>Infrastructure - Canal</option>
+<option>Land Degradation - Erosion</option>
+<option>Crop Health - Pest Damage</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary">smart_toy</span> Description (Captured by Agent)</label>
+<div class="p-3.5 border border-primary/20 bg-primary-container/5 rounded-DEFAULT font-body-sm text-on-surface-variant italic leading-relaxed">
+                                    "Newly constructed check dam across primary stream. Water retention visible. Small signs of seepage on left bank."
+                                </div>
+</div>
+<div class="grid grid-cols-2 gap-margin-md">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Photo Quality</label>
+<div class="relative">
+<select class="w-full h-10 px-3 bg-surface border border-outline rounded-DEFAULT text-on-surface font-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none shadow-sm transition-shadow hover:border-outline-variant cursor-pointer">
+<option>Good - Usable</option>
+<option>Fair - Blurry/Dark</option>
+<option>Poor - Unusable</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Evidence Relevance</label>
+<div class="relative">
+<select class="w-full h-10 px-3 bg-surface border border-outline rounded-DEFAULT text-on-surface font-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none shadow-sm transition-shadow hover:border-outline-variant cursor-pointer">
+<option>High Relevance</option>
+<option>Moderate</option>
+<option>Low / Off-topic</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Intervention Required?</label>
+<div class="flex gap-6 mt-1 p-2 bg-surface-container-lowest border border-subtle rounded-DEFAULT">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-4 h-4 text-primary bg-surface border-outline focus:ring-primary focus:ring-offset-0 transition-colors" name="intervention" type="radio"/>
+<span class="font-body-sm text-on-surface group-hover:text-primary transition-colors">Yes - Urgent</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input checked="" class="w-4 h-4 text-primary bg-surface border-outline focus:ring-primary focus:ring-offset-0 transition-colors" name="intervention" type="radio"/>
+<span class="font-body-sm text-on-surface group-hover:text-primary transition-colors font-medium">Yes - Routine</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-4 h-4 text-primary bg-surface border-outline focus:ring-primary focus:ring-offset-0 transition-colors" name="intervention" type="radio"/>
+<span class="font-body-sm text-on-surface group-hover:text-primary transition-colors">No</span>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 pb-2">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Reviewer Remarks</label>
+<textarea class="w-full p-3 bg-surface border border-outline rounded-DEFAULT text-on-surface font-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none shadow-sm transition-shadow hover:border-outline-variant" placeholder="Enter specific notes for further action..." rows="3"></textarea>
+</div>
+</div>
+<!-- Actions -->
+<div class="p-margin-md border-t border-subtle bg-surface flex justify-between items-center shrink-0 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+<div class="flex gap-3">
+<button class="px-4 py-2.5 bg-error/10 text-error border border-error/30 font-label-md font-semibold rounded-DEFAULT flex items-center gap-1.5 hover:bg-error hover:text-on-error transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">flag</span> Flag
+                                </button>
+<button class="px-4 py-2.5 border border-outline text-on-surface font-label-md font-medium rounded-DEFAULT flex items-center gap-1.5 hover:bg-surface-container transition-colors shadow-sm bg-surface">
+<span class="material-symbols-outlined text-[18px]">my_location</span> Location
+                                </button>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2.5 border border-outline text-on-surface font-label-md font-medium rounded-DEFAULT flex items-center gap-1.5 hover:bg-surface-container transition-colors shadow-sm bg-surface">
+                                    Next <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="px-6 py-2.5 bg-primary text-on-primary font-label-md font-bold rounded-DEFAULT flex items-center gap-1.5 hover:bg-primary-container hover:text-on-primary-container transition-all shadow-md active:scale-95">
+<span class="material-symbols-outlined text-[20px]">check_circle</span> Approve
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

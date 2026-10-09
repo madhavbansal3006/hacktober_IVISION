@@ -1,0 +1,21 @@
+{
+  "t2_full_scene_predicted_percent": {
+    "Forest": 20.63,
+    "Agriculture": 68.76,
+    "Water": 0.64,
+    "Built-up": 8.73,
+    "Barren": 1.24
+  },
+  "t2_valid_pixel_count": 5715204,
+  "t2_domain_pct_of_raster": 57.37,
+  "baseline_full_scene_predicted_percent": {
+    "Forest": 20.17,
+    "Agriculture": 62.65,
+    "Water": 0.73,
+    "Built-up": 14.76,
+    "Barren": 1.7
+  },
+  "baseline_domain_pct_of_raster": 58.57,
+  "domain_note": "T2 requires both dates' features to be valid at each pixel, so its full-scene domain (date1 AND date2 valid) is smaller than production Model 1's single-date domain (date1 valid only). Percentages are computed within each model's own domain and are NOT directly comparable pixel-for-pixel.",
+  "elapsed_seconds": 91.0
+}

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Watershed Decision Support - GIS Explorer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-tertiary-container": "#ffaec6",
+                "on-secondary": "#ffffff",
+                "surface-container-low": "#eef6e7",
+                "tertiary": "#6b1d3d",
+                "border-strong": "#717a6d",
+                "status-review": "#ed6c02",
+                "outline": "#717a6d",
+                "surface-tint": "#2a6b2c",
+                "status-valid": "#2e7d32",
+                "on-primary-fixed": "#002203",
+                "on-tertiary-fixed": "#3e001d",
+                "status-inside": "#0288d1",
+                "border-subtle": "#c0c9bb",
+                "surface-container": "#e8f1e1",
+                "surface-variant": "#dde5d6",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "primary-container": "#1b5e20",
+                "secondary": "#01629e",
+                "on-secondary-container": "#004c7d",
+                "outline-variant": "#c0c9bb",
+                "primary-fixed-dim": "#91d78a",
+                "status-outside": "#7b1fa2",
+                "tertiary-container": "#883454",
+                "inverse-surface": "#2b3328",
+                "error-container": "#ffdad6",
+                "inverse-on-surface": "#ebf3e4",
+                "on-secondary-fixed-variant": "#004a79",
+                "surface-dim": "#d4ddce",
+                "tertiary-fixed": "#ffd9e2",
+                "on-primary-container": "#90d689",
+                "on-primary-fixed-variant": "#0c5216",
+                "secondary-fixed-dim": "#9acbff",
+                "on-tertiary-fixed-variant": "#7a2949",
+                "primary-fixed": "#acf4a4",
+                "on-surface-variant": "#41493e",
+                "on-secondary-fixed": "#001d34",
+                "on-primary": "#ffffff",
+                "status-missing": "#757575",
+                "tertiary-fixed-dim": "#ffb1c8",
+                "primary": "#00450d",
+                "on-surface": "#161d14",
+                "on-tertiary": "#ffffff",
+                "secondary-fixed": "#cfe5ff",
+                "surface": "#f7fbf1",
+                "inverse-primary": "#91d78a",
+                "on-error-container": "#93000a",
+                "secondary-container": "#7cbeff",
+                "surface-container-high": "#e2ebdc",
+                "surface-container-highest": "#dde5d6",
+                "on-background": "#161d14",
+                "on-error": "#ffffff",
+                "surface-bright": "#f4fced",
+                "status-suspicious": "#d32f2f",
+                "background": "#f4fced"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "margin-md": "16px",
+                "gutter": "12px",
+                "panel-gap": "4px",
+                "unit": "4px",
+                "margin-sm": "8px",
+                "sidebar-w": "60px",
+                "sidebar-expanded": "240px"
+        },
+        "fontFamily": {
+                "mono-data": [
+                        "jetbrainsMono"
+                ],
+                "headline-lg": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "display": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "body-sm": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "Inter"
+                ],
+                "label-md": [
+                        "Inter"
+                ],
+                "headline-sm": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "mono-data": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "22px",
+                        {
+                                "lineHeight": "28px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display": [
+                        "30px",
+                        {
+                                "lineHeight": "36px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "15px",
+                        {
+                                "lineHeight": "22px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "18px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-sm": [
+                        "10px",
+                        {
+                                "lineHeight": "12px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-md": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        /* Custom scrollbar for tight data panels */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #c0c9bb; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #717a6d; }
+    </style>
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-surface text-on-surface font-body-md h-screen overflow-hidden flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-md h-12 border-b border-subtle bg-surface shadow-sm">
+<div class="flex items-center gap-margin-md">
+<span class="font-headline-md text-headline-md font-extrabold text-primary">Watershed Decision Support</span>
+<nav class="hidden md:flex gap-margin-sm ml-margin-md">
+<a class="font-body-sm text-body-sm px-margin-sm py-unit text-on-surface-variant hover:bg-surface-container transition-colors duration-150 rounded" href="#">Dashboard</a>
+<a class="font-body-sm text-body-sm px-margin-sm py-unit text-primary border-b-2 border-primary hover:bg-surface-container transition-colors duration-150 rounded-t" href="#">GIS Explorer</a>
+<a class="font-body-sm text-body-sm px-margin-sm py-unit text-on-surface-variant hover:bg-surface-container transition-colors duration-150 rounded" href="#">Reports</a>
+</nav>
+<!-- Global MWS Selector -->
+<div class="ml-4 flex items-center">
+<select class="bg-surface-container-lowest border border-outline text-on-surface text-sm rounded focus:ring-primary focus:border-primary block p-1 font-body-sm w-32 cursor-pointer shadow-sm">
+<option value="">All MWS</option>
+<option value="MWS-01">MWS-01</option>
+<option value="MWS-02">MWS-02</option>
+<option selected="" value="MWS-08">MWS-08</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-margin-sm">
+<button class="p-unit text-on-surface-variant hover:bg-surface-container rounded transition-colors duration-150">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="p-unit text-on-surface-variant hover:bg-surface-container rounded transition-colors duration-150">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+<button class="p-unit text-on-surface-variant hover:bg-surface-container rounded transition-colors duration-150">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</header>
+<div class="flex flex-1 pt-12 h-full">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col w-sidebar-expanded bg-surface-container-lowest border-r border-subtle h-full z-40 shrink-0">
+<div class="p-margin-md border-b border-subtle flex items-center gap-margin-sm">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary text-[16px]">person</span>
+</div>
+<div class="overflow-hidden">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface truncate">Shiggaon Taluk</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant truncate uppercase tracking-widest">Haveri District</div>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto py-margin-sm">
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">dashboard</span> Dashboard
+                </a>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md bg-primary/10 text-primary font-semibold transition-all duration-200 border-r-4 border-primary" href="#">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">map</span> GIS Explorer
+                </a>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">layers</span> LULC Analysis
+                </a>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">opacity</span> Water Quality
+                </a>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">sensors</span> IoT Monitoring
+                </a>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">image</span> Geo-Coded Images
+                </a>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span> Watersheds
+                </a>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">assessment</span> Reports
+                </a>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all duration-200 mt-auto" href="#">
+<span class="material-symbols-outlined text-[18px]">settings</span> Settings
+                </a>
+</nav>
+</aside>
+<!-- Main Workspace (Rigid Grid) -->
+<main class="flex-1 flex gap-panel-gap p-panel-gap bg-surface-variant overflow-hidden">
+<!-- Left Panel: Layer Controls -->
+<section class="w-[280px] bg-surface-container-lowest border border-subtle flex flex-col shrink-0 rounded shadow-sm">
+<header class="p-margin-sm border-b border-subtle bg-surface-container-low flex justify-between items-center rounded-t">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Layer Controls</h2>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">filter_list</span></button>
+</header>
+<div class="flex-1 overflow-y-auto p-margin-sm flex flex-col gap-margin-md">
+<!-- Base Map Group -->
+<div>
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Base Map</h3>
+<div class="flex flex-col gap-1">
+<label class="flex items-center gap-margin-sm p-2 hover:bg-surface-container-low cursor-pointer rounded transition-colors">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">radio_button_checked</span>
+<span class="font-body-sm text-body-sm text-on-surface">Satellite (High Res)</span>
+</label>
+<label class="flex items-center gap-margin-sm p-2 hover:bg-surface-container-low cursor-pointer rounded transition-colors">
+<span class="material-symbols-outlined text-outline-variant text-[18px]">radio_button_unchecked</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Terrain / Topo</span>
+</label>
+<label class="flex items-center gap-margin-sm p-2 hover:bg-surface-container-low cursor-pointer rounded transition-colors">
+<span class="material-symbols-outlined text-outline-variant text-[18px]">radio_button_unchecked</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Streets Light</span>
+</label>
+</div>
+</div>
+<!-- Watershed Group -->
+<div class="border-t border-subtle pt-margin-sm">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Watershed Bounds</h3>
+<div class="flex flex-col gap-1">
+<label class="flex items-center gap-margin-sm p-2 hover:bg-surface-container-low cursor-pointer rounded transition-colors">
+<span class="material-symbols-outlined text-primary text-[18px]">check_box</span>
+<span class="font-body-sm text-body-sm text-on-surface">Study Boundary</span>
+</label>
+<label class="flex items-center gap-margin-sm p-2 bg-primary/5 hover:bg-primary/10 cursor-pointer rounded transition-colors border border-primary/20">
+<span class="material-symbols-outlined text-primary text-[18px]">check_box</span>
+<span class="font-body-sm text-body-sm font-semibold text-primary">Micro-Watersheds (MWS)</span>
+</label>
+<label class="flex items-center gap-margin-sm p-2 hover:bg-surface-container-low cursor-pointer rounded transition-colors">
+<span class="material-symbols-outlined text-outline-variant text-[18px]">check_box_outline_blank</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Drainage Network</span>
+</label>
+</div>
+</div>
+<!-- Analytics Group -->
+<div class="border-t border-subtle pt-margin-sm">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Analytics &amp; Overlays</h3>
+<div class="flex flex-col gap-1">
+<label class="flex items-center justify-between p-2 hover:bg-surface-container-low cursor-pointer rounded group transition-colors">
+<div class="flex items-center gap-margin-sm">
+<span class="material-symbols-outlined text-outline-variant text-[18px]">check_box_outline_blank</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">LULC Classification</span>
+</div>
+<span class="material-symbols-outlined text-[14px] text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">tune</span>
+</label>
+<label class="flex items-center justify-between p-2 hover:bg-surface-container-low cursor-pointer rounded group transition-colors">
+<div class="flex items-center gap-margin-sm">
+<span class="material-symbols-outlined text-outline-variant text-[18px]">check_box_outline_blank</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">AI Confidence Heatmap</span>
+</div>
+</label>
+<label class="flex items-center justify-between p-2 bg-primary/5 hover:bg-primary/10 cursor-pointer rounded group border border-primary/20 transition-colors">
+<div class="flex items-center gap-margin-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">check_box</span>
+<span class="font-body-sm text-body-sm font-medium text-primary">IoT Stations</span>
+</div>
+<div class="w-2 h-2 rounded-full bg-status-valid"></div>
+</label>
+<label class="flex items-center justify-between p-2 hover:bg-surface-container-low cursor-pointer rounded group transition-colors">
+<div class="flex items-center gap-margin-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">check_box</span>
+<span class="font-body-sm text-body-sm text-on-surface">Geo-Coded Photos</span>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded">42</span>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Central Map Viewport -->
+<section class="flex-1 relative border border-subtle bg-surface-dim overflow-hidden flex flex-col rounded shadow-sm">
+<!-- Map Background Placeholder -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="High-resolution, top-down satellite view of a diverse agricultural and forested watershed landscape. The aesthetic is clean, professional, and slightly muted, resembling a sophisticated GIS software interface. Subtle topological variations are visible. The color palette emphasizes natural deep greens, earthy browns, and dark blues of water bodies, rendered with crisp, scientific clarity and high contrast." data-location="Shiggaon Taluk, Karnataka, India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA3gW2HB9BOQM8Dy5x7Ky7vpgqOcrp21x_PoPdd6s9aC63J7yqhts7yWLaFgxQzLkXu2V0xbYMLfHgMdBQFVDKQvivPXsqdE1Bz9mFkkeu54_xHzHlFW41WD_GG8jXgFVfENgW8RuFRU2xRACa2Bv0ER0-s5MrnPz9T71KcP46idYMEWl2q01xim9tBF7ldxCBkGH7_TKTQFTwxA55U7tVwoYrSspAisca7Upwr8n31mDHV7KndZkOG1Q')"></div>
+<!-- Map Interactive MWS bounds -->
+<div class="absolute inset-0 pointer-events-none">
+<!-- Simplified SVG representing clicking an MWS -->
+<svg class="w-full h-full preserve-3d" preserveaspectratio="none" viewbox="0 0 100 100">
+<!-- MWS-08 Poly -->
+<polygon class="pointer-events-auto cursor-pointer hover:fill-primary/40 transition-colors" fill="rgba(0, 69, 13, 0.2)" points="40,30 60,20 80,40 70,60 45,55" stroke="#00450d" stroke-width="0.5"></polygon>
+</svg>
+</div>
+<!-- GIS Toolbars (Floating) -->
+<div class="absolute top-margin-md right-margin-md flex bg-surface-container-lowest border border-subtle rounded shadow overflow-hidden z-10">
+<button class="p-2 hover:bg-surface-container-low border-r border-subtle text-on-surface-variant hover:text-on-surface transition-colors" title="Measurement Tool"><span class="material-symbols-outlined text-[20px]">straighten</span></button>
+<button class="p-2 hover:bg-surface-container-low border-r border-subtle text-on-surface-variant hover:text-on-surface transition-colors" title="Draw Polygon"><span class="material-symbols-outlined text-[20px]">draw</span></button>
+<button class="p-2 bg-primary hover:bg-primary/90 text-on-primary transition-colors" title="Identify Features"><span class="material-symbols-outlined text-[20px]">info</span></button>
+</div>
+<div class="absolute bottom-margin-md right-margin-md flex flex-col gap-2 z-10">
+<div class="flex flex-col bg-surface-container-lowest border border-subtle rounded shadow overflow-hidden">
+<button class="p-2 hover:bg-surface-container-low border-b border-subtle text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">add</span></button>
+<button class="p-2 hover:bg-surface-container-low text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">remove</span></button>
+</div>
+<button class="p-2 bg-surface-container-lowest border border-subtle rounded shadow hover:bg-surface-container-low text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">my_location</span></button>
+</div>
+<!-- Legend -->
+<div class="absolute bottom-margin-md left-margin-md bg-surface-container-lowest/95 backdrop-blur-sm border border-subtle p-3 rounded shadow z-10 min-w-[160px]">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2 tracking-wide">Legend</h4>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center gap-2.5"><div class="w-3 h-3 bg-status-valid border border-outline-variant rounded-full shadow-sm"></div><span class="font-body-sm text-body-sm text-on-surface">Active IoT</span></div>
+<div class="flex items-center gap-2.5"><div class="w-3 h-3 bg-status-missing border border-outline-variant rounded-full shadow-sm"></div><span class="font-body-sm text-body-sm text-on-surface">Offline IoT</span></div>
+<div class="flex items-center gap-2.5"><div class="w-3 h-3 bg-status-inside border border-outline-variant rounded-sm shadow-sm"></div><span class="font-body-sm text-body-sm text-on-surface">Valid Photo</span></div>
+<div class="flex items-center gap-2.5"><div class="w-3 h-3 bg-status-review border border-outline-variant rounded-sm shadow-sm"></div><span class="font-body-sm text-body-sm text-on-surface">Flagged Photo</span></div>
+<div class="flex items-center gap-2.5 mt-2 pt-2 border-t border-subtle"><div class="w-8 h-1 bg-primary rounded-full"></div><span class="font-body-sm text-body-sm text-on-surface">MWS Bound</span></div>
+</div>
+</div>
+</section>
+<!-- Right Drawer: MWS-08 Detail -->
+<section class="w-[380px] bg-surface-container-lowest border border-subtle flex flex-col shrink-0 rounded shadow-sm">
+<header class="p-margin-md border-b border-subtle bg-surface-container-low flex justify-between items-start rounded-t">
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Micro-Watershed</div>
+<h2 class="font-headline-md text-headline-md text-primary mt-1">MWS-08 Detail</h2>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[20px]">close</span></button>
+</header>
+<div class="flex-1 overflow-y-auto p-margin-md flex flex-col gap-margin-md">
+<!-- Quick Stats -->
+<div class="grid grid-cols-2 gap-3">
+<div class="border border-subtle bg-surface-container-low p-3 rounded flex flex-col justify-center">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total Area</div>
+<div class="font-mono-data text-mono-data text-on-surface mt-1.5 text-sm font-semibold">1,450 Ha</div>
+</div>
+<div class="border border-subtle bg-surface-container-low p-3 rounded flex flex-col justify-center">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">WQI Status</div>
+<!-- Precise Status Badge -->
+<div class="mt-1.5 inline-flex items-center gap-1.5 px-2 py-1 rounded bg-status-valid/10 border border-status-valid/30 w-max">
+<span class="w-2 h-2 rounded-full bg-status-valid shadow-sm"></span>
+<span class="font-label-sm text-label-sm text-status-valid font-bold tracking-wide">82 - GOOD</span>
+</div>
+</div>
+</div>
+<!-- LULC Chart Real -->
+<div class="border border-subtle bg-surface-container-lowest rounded p-4 flex flex-col shadow-sm">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-3 border-b border-subtle pb-2">LULC Distribution</div>
+<div class="w-full flex items-center justify-center relative pt-2">
+<canvas height="200" id="lulcChart"></canvas>
+</div>
+<script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const ctx = document.getElementById('lulcChart').getContext('2d');
+                                new Chart(ctx, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: ['Forest', 'Agri', 'Water', 'Other'],
+                                        datasets: [{
+                                            data: [45, 30, 15, 10],
+                                            backgroundColor: [
+                                                '#00450d', // primary
+                                                '#01629e', // secondary
+                                                '#0288d1', // status-inside
+                                                '#2e7d32'  // status-valid
+                                            ],
+                                            borderWidth: 2,
+                                            borderColor: '#ffffff'
+                                        }]
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        maintainAspectRatio: false,
+                                        cutout: '65%',
+                                        plugins: {
+                                            legend: {
+                                                position: 'bottom',
+                                                labels: {
+                                                    usePointStyle: true,
+                                                    boxWidth: 8,
+                                                    padding: 20,
+                                                    font: {
+                                                        family: 'Inter',
+                                                        size: 12
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
+                            });
+                        </script>
+</div>
+<!-- Infrastructure List -->
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Monitoring Infrastructure</div>
+<!-- Compact Data Table Style List -->
+<div class="border border-subtle bg-surface-container-lowest rounded overflow-hidden shadow-sm">
+<div class="flex justify-between items-center px-3 py-2 bg-surface-container-low border-b border-subtle">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Entity</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Status</span>
+</div>
+<div class="flex justify-between items-center px-3 py-2.5 border-b border-subtle hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">sensors</span>
+<span class="font-mono-data text-mono-data text-on-surface font-medium">STN-A42</span>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-status-valid shadow-sm"></span>
+</div>
+<div class="flex justify-between items-center px-3 py-2.5 border-b border-subtle hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">sensors</span>
+<span class="font-mono-data text-mono-data text-on-surface font-medium">STN-B19</span>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-status-missing shadow-sm"></span>
+</div>
+<div class="flex justify-between items-center px-3 py-2.5 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[16px] text-status-inside">photo_camera</span>
+<span class="font-mono-data text-mono-data text-on-surface font-medium">OBS-GRP-1</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-sm bg-status-inside shadow-sm"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">3</span>
+<span class="w-2.5 h-2.5 rounded-sm bg-status-review ml-2 shadow-sm"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">1</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-2.5 rounded mt-1 hover:bg-primary/90 transition-colors shadow focus:ring-2 focus:ring-offset-1 focus:ring-primary">
+                        View Full Profile
+                    </button>
+<!-- Alerts -->
+<div class="mt-2">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Active Alerts</div>
+<div class="border border-status-review/30 bg-status-review/5 rounded p-3.5 flex items-start gap-3 shadow-sm">
+<span class="material-symbols-outlined text-status-review text-[20px]">warning</span>
+<div>
+<div class="font-label-md text-label-md text-status-review uppercase tracking-wide font-bold">Elevated Turbidity</div>
+<div class="font-body-sm text-body-sm text-on-surface mt-1 leading-relaxed">Station STN-A42 reporting variance &gt; 15% from baseline in last 24h.</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

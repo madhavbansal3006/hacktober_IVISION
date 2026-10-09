@@ -1,0 +1,31 @@
+# Geo-Coded Image Analysis module — dependencies
+#
+# Every package here was verified by grepping actual import statements in
+# src/, tests/, and the Phase 1 audit scripts (audit_*.py) -- not copied
+# from a template. Versions pinned to what this module was built and
+# tested against.
+#
+# NOTE: pandas is NOT listed -- it is available in this environment but is
+# not imported anywhere in src/ or tests/. CSV output uses Python's
+# built-in csv module (see src/io_writer.py). Don't add it back without a
+# reason; it would be dead weight.
+
+# --- Core runtime dependencies (src/) ---
+rasterio==1.5.1        # LULC raster reading + coordinate/pixel transform (lulc_query.py)
+geopandas==1.1.4       # boundary/watershed vector layers, GeoPackage output (boundary_checker.py, watershed_locator.py, teammate_gis_writer.py)
+shapely==2.1.2         # Point/geometry operations, spatial indexing (STRtree)
+pyproj==3.7.2          # WGS84 <-> EPSG:32643 coordinate reprojection
+numpy==2.4.4           # raster array operations (lulc_query.py neighborhood stats)
+Pillow==12.1.1         # EXIF GPS extraction from JPEGs (exif_reader.py)
+openpyxl==3.1.5        # QA_Log.xlsx output (teammate_metadata_writer.py)
+
+# --- Test-only dependencies (tests/) ---
+pytest==9.1.1           # test runner
+piexif==1.1.3            # writes synthetic EXIF GPS blocks for test fixtures (tests/make_fixtures.py)
+affine==3.0.1             # constructs raster transforms directly in test fixtures
+                           # (already a transitive dependency of rasterio; listed
+                           # explicitly here because tests/ import it directly)
+
+# --- Used only by the one-off Phase 1 audit scripts (audit_*.py), NOT by
+#     the pipeline itself. Safe to omit if you don't need to re-run those. ---
+fiona==1.10.1

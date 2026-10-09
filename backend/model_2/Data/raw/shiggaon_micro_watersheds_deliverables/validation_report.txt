@@ -1,0 +1,50 @@
+=== SHIGGAON MICRO-WATERSHEDS VALIDATION REPORT ===
+
+1. File existence check:
+  GeoJSON file exists: True (shiggaon_micro_watersheds.geojson)
+  GeoPackage file exists: True (shiggaon_micro_watersheds.gpkg)
+  GeoJSON file size: 232266 bytes
+  GeoPackage file size: 200704 bytes
+
+2. Feature count check:
+  GeoJSON features count: 66
+  GeoPackage features count: 66
+  [SUCCESS] Feature counts match: 66
+
+3. Geometry validity check:
+  Empty geometries count: 0
+  Invalid geometries count: 0
+  [SUCCESS] All geometries are non-empty and valid.
+
+4. Precise intersection verification:
+  Non-intersecting features count: 0
+  [SUCCESS] Confirmed: 100% of selected micro-watersheds intersect Shiggaon Taluk boundary.
+
+5. CRS check:
+  GeoJSON CRS: EPSG:4326
+  GeoPackage CRS: EPSG:4326
+  [SUCCESS] All outputs are in the correct CRS (EPSG:4326).
+
+6. Area calculation verification:
+  Total area in output file: 966.217104 km²
+  Total area recalculated in UTM 43N (EPSG:32643): 966.217104 km²
+  Difference: 2.614797e-12 km²
+  [SUCCESS] Area values match and were correctly calculated in UTM Zone 43N.
+
+7. Bounding Box check:
+  Shiggaon boundary bounds:   [75.067347, 14.865909, 75.350558, 15.161774]
+  Micro-watersheds bounds:    [75.034813, 14.835313, 75.379239, 15.190760]
+  [INFO] Micro-watershed bounding box completely contains Shiggaon boundary (as expected for intersecting features).
+
+8. Duplicate ID check:
+  Duplicate 'id' values: 0
+  Duplicate 'MWS' values: 0
+  [SUCCESS] No duplicate micro-watershed IDs or codes found.
+
+=== SUMMARY METRICS ===
+  - Extracted Micro-watersheds: 66
+  - Total Selected Watersheds Area: 966.2171 km²
+  - Micro-watershed CRS: EPSG:4326
+  - Output GeoJSON path: C:\Users\madha\.gemini\antigravity-ide\scratch\shiggaon_lulc\shiggaon_micro_watersheds.geojson
+  - Output GPKG path: C:\Users\madha\.gemini\antigravity-ide\scratch\shiggaon_lulc\shiggaon_micro_watersheds.gpkg
+  - Preserved Attributes: ['id', 'AREA', 'CATCHMENT', 'WATERSHED', 'MWS', 'SUBWATERSH', 'SUBCATCH', 'region', 'BASIN', 'area_km2']

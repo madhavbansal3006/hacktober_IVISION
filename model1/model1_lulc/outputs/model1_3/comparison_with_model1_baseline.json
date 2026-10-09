@@ -1,0 +1,93 @@
+{
+  "baseline_experiment_B": {
+    "macro_f1": 0.8066420789180924,
+    "accuracy": 0.8050847457627118,
+    "weighted_f1": 0.8072771680223646,
+    "per_class": {
+      "Forest": {
+        "precision": 0.9306784660766961,
+        "recall": 0.8912429378531074,
+        "f1": 0.9105339105339105,
+        "support": 708
+      },
+      "Agriculture": {
+        "precision": 0.7237008871989861,
+        "recall": 0.7875862068965517,
+        "f1": 0.7542932628797886,
+        "support": 725
+      },
+      "Water": {
+        "precision": 0.9183431952662722,
+        "recall": 0.7838383838383839,
+        "f1": 0.8457765667574932,
+        "support": 990
+      },
+      "Built-up": {
+        "precision": 0.7691373025516404,
+        "recall": 0.7599039615846338,
+        "f1": 0.7644927536231884,
+        "support": 833
+      },
+      "Barren": {
+        "precision": 0.7058152793614595,
+        "recall": 0.8187830687830688,
+        "f1": 0.7581139007960809,
+        "support": 756
+      }
+    },
+    "n_features": 9,
+    "full_scene_predicted_percent": {
+      "Forest": 20.17,
+      "Agriculture": 62.65,
+      "Water": 0.73,
+      "Built-up": 14.76,
+      "Barren": 1.7
+    }
+  },
+  "model1_3_t2": {
+    "macro_f1": 0.8633290330166543,
+    "accuracy": 0.865320796460177,
+    "weighted_f1": 0.8656952000687518,
+    "per_class": {
+      "Forest": {
+        "precision": 0.9530102790014684,
+        "recall": 0.9351585014409222,
+        "f1": 0.944,
+        "support": 694
+      },
+      "Agriculture": {
+        "precision": 0.8865546218487395,
+        "recall": 0.8865546218487395,
+        "f1": 0.8865546218487395,
+        "support": 714
+      },
+      "Water": {
+        "precision": 0.8924302788844621,
+        "recall": 0.8347826086956521,
+        "f1": 0.8626444159178434,
+        "support": 805
+      },
+      "Built-up": {
+        "precision": 0.8403361344537815,
+        "recall": 0.89171974522293,
+        "f1": 0.865265760197775,
+        "support": 785
+      },
+      "Barren": {
+        "precision": 0.7480314960629921,
+        "recall": 0.7686084142394822,
+        "f1": 0.7581803671189146,
+        "support": 618
+      }
+    },
+    "n_features": 18
+  },
+  "improvement": {
+    "baseline_macro_f1": 0.8066420789180924,
+    "t2_macro_f1": 0.8633290330166543,
+    "absolute_improvement": 0.05668695409856195,
+    "relative_improvement_pct": 7.027522562992654
+  },
+  "test_set_note": "T2 evaluated on 3616 test pixels (baseline had 4012; 396 excluded because date2 features were invalid there \u2014 see validation_report.json check 6). T2's test set is a verified strict subset of baseline's test-pixel identities, not a different pixel population (audit checks 3-7: PASS).",
+  "full_scene_domain_note": "Not directly comparable pixel-for-pixel \u2014 T2's domain is smaller (date1 AND date2 valid). See feature_manifest.json and validation_report.json."
+}

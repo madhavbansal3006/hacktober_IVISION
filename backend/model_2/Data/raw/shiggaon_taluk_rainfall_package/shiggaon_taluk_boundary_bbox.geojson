@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Shiggaon Taluk (approximate bounding box)",
+        "district": "Haveri",
+        "state": "Karnataka",
+        "area_km2": 588,
+        "source": "Wikipedia (Shiggaon), stated extent: 14.28N-14.59N, 75.07E-75.38E",
+        "note": "This is a bounding-box approximation, NOT the true administrative polygon. For real GIS/watershed work, replace with the exact taluk polygon from Karnataka KGIS (kgis.ksrsac.in) or the Survey of India / SOI taluk boundary layer, or Bhuvan/LGD taluk shapefiles."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [75.07, 14.28],
+          [75.38, 14.28],
+          [75.38, 14.59],
+          [75.07, 14.59],
+          [75.07, 14.28]
+        ]]
+      }
+    }
+  ]
+}

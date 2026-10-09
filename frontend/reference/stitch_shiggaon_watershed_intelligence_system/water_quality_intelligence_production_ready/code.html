@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Water Quality Intelligence - Watershed Decision Support</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-tertiary-container": "#ffaec6",
+                "on-secondary": "#ffffff",
+                "surface-container-low": "#eef6e7",
+                "tertiary": "#6b1d3d",
+                "border-strong": "#717a6d",
+                "status-review": "#ed6c02",
+                "outline": "#717a6d",
+                "surface-tint": "#2a6b2c",
+                "status-valid": "#2e7d32",
+                "on-primary-fixed": "#002203",
+                "on-tertiary-fixed": "#3e001d",
+                "status-inside": "#0288d1",
+                "border-subtle": "#c0c9bb",
+                "surface-container": "#e8f1e1",
+                "surface-variant": "#dde5d6",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "primary-container": "#1b5e20",
+                "secondary": "#01629e",
+                "on-secondary-container": "#004c7d",
+                "outline-variant": "#c0c9bb",
+                "primary-fixed-dim": "#91d78a",
+                "status-outside": "#7b1fa2",
+                "tertiary-container": "#883454",
+                "inverse-surface": "#2b3328",
+                "error-container": "#ffdad6",
+                "inverse-on-surface": "#ebf3e4",
+                "on-secondary-fixed-variant": "#004a79",
+                "surface-dim": "#d4ddce",
+                "tertiary-fixed": "#ffd9e2",
+                "on-primary-container": "#90d689",
+                "on-primary-fixed-variant": "#0c5216",
+                "secondary-fixed-dim": "#9acbff",
+                "on-tertiary-fixed-variant": "#7a2949",
+                "primary-fixed": "#acf4a4",
+                "on-surface-variant": "#41493e",
+                "on-secondary-fixed": "#001d34",
+                "on-primary": "#ffffff",
+                "status-missing": "#757575",
+                "tertiary-fixed-dim": "#ffb1c8",
+                "primary": "#00450d",
+                "on-surface": "#161d14",
+                "on-tertiary": "#ffffff",
+                "secondary-fixed": "#cfe5ff",
+                "surface": "#f7fbf1",
+                "inverse-primary": "#91d78a",
+                "on-error-container": "#93000a",
+                "secondary-container": "#7cbeff",
+                "surface-container-high": "#e2ebdc",
+                "surface-container-highest": "#dde5d6",
+                "on-background": "#161d14",
+                "on-error": "#ffffff",
+                "surface-bright": "#f4fced",
+                "status-suspicious": "#d32f2f",
+                "background": "#f4fced"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "margin-md": "16px",
+                "gutter": "12px",
+                "panel-gap": "4px",
+                "unit": "4px",
+                "margin-sm": "8px",
+                "sidebar-w": "60px",
+                "sidebar-expanded": "240px"
+        },
+        "fontFamily": {
+                "mono-data": [
+                        "jetbrainsMono"
+                ],
+                "headline-lg": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "display": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "body-sm": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "Inter"
+                ],
+                "label-md": [
+                        "Inter"
+                ],
+                "headline-sm": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "mono-data": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "22px",
+                        {
+                                "lineHeight": "28px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display": [
+                        "30px",
+                        {
+                                "lineHeight": "36px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "15px",
+                        {
+                                "lineHeight": "22px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "18px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-sm": [
+                        "10px",
+                        {
+                                "lineHeight": "12px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-md": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        /* Base styles to enforce rigid layout */
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background-color: #f7fbf1; /* surface */
+        }
+        
+        /* Custom scrollbar for data panels */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e8f1e1; /* surface-container */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c0c9bb; /* border-subtle */
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #717a6d; /* outline */
+        }
+
+        /* Material Icons */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md flex h-screen overflow-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-md h-12 bg-surface border-b border-subtle hidden md:flex">
+<div class="flex items-center gap-gutter">
+<span class="font-headline-md text-headline-md font-extrabold text-primary">Watershed Decision Support</span>
+</div>
+<div class="flex items-center gap-margin-md flex-1 justify-center">
+<a class="font-headline-md text-headline-md font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container px-3 py-1 rounded transition-colors" href="#">Dashboard</a>
+<a class="font-headline-md text-headline-md font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container px-3 py-1 rounded transition-colors" href="#">GIS Explorer</a>
+<a class="font-headline-md text-headline-md font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container px-3 py-1 rounded transition-colors" href="#">Reports</a>
+</div>
+<div class="flex items-center gap-margin-sm">
+<button aria-label="notifications" class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors duration-150 ease-in-out">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="help" class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors duration-150 ease-in-out">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button aria-label="account_circle" class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors duration-150 ease-in-out">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full z-40 flex flex-col pt-12 bg-surface-container border-r border-subtle w-sidebar-expanded transition-all duration-200 ease-in-out hidden md:flex">
+<div class="p-margin-md border-b border-subtle flex items-center gap-margin-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold">ST</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Shiggaon Taluk</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Haveri District</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto py-margin-sm">
+<ul class="flex flex-col gap-unit">
+<li>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+                    GIS Explorer
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+                    LULC Analysis
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md bg-primary-container text-on-primary-container font-semibold border-l-4 border-primary transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="opacity">opacity</span>
+                    Water Quality
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="sensors">sensors</span>
+                    IoT Monitoring
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="image">image</span>
+                    Geo-Coded Images
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="water_shed">qr_code_2</span>
+                    Watersheds
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+                    Reports
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-margin-sm px-margin-md py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-sidebar-expanded mt-12 flex h-[calc(100vh-48px)] p-panel-gap gap-panel-gap bg-surface">
+<!-- Left Column: KPIs & Model Info (Fixed Width) -->
+<div class="w-[320px] flex flex-col gap-panel-gap h-full shrink-0">
+<!-- Context Header -->
+<div class="bg-surface-container-lowest border border-subtle rounded-DEFAULT p-margin-md flex flex-col gap-margin-sm shrink-0 shadow-sm">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface m-0">Water Quality Intelligence</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Sensor Node: ST-N45</p>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded bg-status-valid/10 border border-status-valid font-label-sm text-label-sm text-status-valid">
+<span class="material-symbols-outlined text-[14px] mr-1" data-icon="check_circle">check_circle</span>
+                    NODE ACTIVE
+                </span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">Last update: 14:32 UTC</span>
+</div>
+</div>
+<!-- KPIs Bento -->
+<div class="bg-surface-container-lowest border border-subtle rounded-DEFAULT p-margin-md flex-1 overflow-y-auto shadow-sm flex flex-col gap-margin-md">
+<h3 class="font-headline-sm text-headline-sm border-b border-subtle pb-2 flex justify-between items-center text-on-surface">
+                Current Readings
+                <span class="material-symbols-outlined text-outline" data-icon="speed">speed</span>
+</h3>
+<div class="grid grid-cols-2 gap-panel-gap">
+<!-- WQI KPI (Hero) -->
+<div class="col-span-2 bg-surface-container border border-subtle rounded-sm p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Overall WQI</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-status-valid/10 border border-status-valid font-label-sm text-label-sm text-status-valid">GOOD</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-display text-[36px] leading-[40px] text-primary font-bold">78.0</span>
+<span class="font-body-sm text-body-sm text-status-valid flex items-center font-medium">
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_upward">arrow_upward</span> 1.5%
+                        </span>
+</div>
+</div>
+<!-- pH -->
+<div class="bg-surface-container-low border border-subtle rounded-sm p-3 flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">pH Level</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-on-surface">7.4</span>
+</div>
+<div class="mt-auto w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-status-valid h-full w-[65%]"></div>
+</div>
+</div>
+<!-- Temp -->
+<div class="bg-surface-container-low border border-subtle rounded-sm p-3 flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Temperature</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-on-surface">24</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">°C</span>
+</div>
+<div class="mt-auto w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[45%]"></div>
+</div>
+</div>
+<!-- Turbidity -->
+<div class="bg-surface-container-low border border-subtle rounded-sm p-3 flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Turbidity</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-on-surface">12</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">NTU</span>
+</div>
+<div class="mt-auto w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-status-review h-full w-[50%]"></div>
+</div>
+</div>
+<!-- TDS -->
+<div class="bg-surface-container-low border border-subtle rounded-sm p-3 flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">TDS</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-on-surface">450</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">mg/L</span>
+</div>
+<div class="mt-auto w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-status-valid h-full w-[60%]"></div>
+</div>
+</div>
+</div>
+<!-- Model Assessment -->
+<div class="pt-margin-md border-t border-subtle">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2">Automated Assessment</h4>
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed">
+                    Parameters remain within safe thresholds. Slight elevation in turbidity detected upstream (sensor ST-N42), likely due to recent precipitation. Model confidence high (92%) for next 24h stability.
+                </p>
+</div>
+<!-- Model Information -->
+<div class="pt-margin-md border-t border-subtle">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2">Model Information</h4>
+<div class="bg-surface-container-low rounded-sm p-3 border border-subtle flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Core Model</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">LSTM Forecasting v2.1</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Training Horizon</span>
+<span class="font-mono-data text-mono-data text-on-surface">180 Days</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Model Status</span>
+<span class="font-label-sm text-label-sm text-status-valid font-bold tracking-wide">OPTIMIZED</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Center/Right Column: Charts & Analysis (Fluid) -->
+<div class="flex-1 flex flex-col gap-panel-gap h-full min-w-0">
+<!-- Trend Chart (Top) -->
+<div class="bg-surface-container-lowest border border-subtle rounded-DEFAULT flex flex-col h-[40%] shadow-sm">
+<div class="p-3 border-b border-subtle flex justify-between items-center bg-surface-container-lowest shrink-0">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Historical Parameter Trends</h3>
+<div class="flex gap-[1px] bg-outline-variant p-[2px] rounded-sm">
+<button class="px-4 py-1.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors rounded-sm">pH</button>
+<button class="px-4 py-1.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors rounded-sm">TDS</button>
+<button class="px-4 py-1.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors rounded-sm">TURB</button>
+<button class="px-4 py-1.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors rounded-sm">TEMP</button>
+<button class="px-4 py-1.5 bg-primary text-on-primary font-label-sm text-label-sm rounded-sm ml-[1px]">ALL</button>
+</div>
+</div>
+<div class="flex-1 p-margin-md relative">
+<!-- SVG Chart replacing placeholder -->
+<div class="absolute inset-margin-md flex flex-col bg-surface-container-lowest rounded-sm overflow-hidden">
+<div class="flex gap-6 mb-4 justify-center items-center">
+<span class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface"><span class="w-4 h-1.5 bg-[#01629e] rounded-full"></span> pH</span>
+<span class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface"><span class="w-4 h-1.5 bg-[#ed6c02] rounded-full"></span> TDS</span>
+<span class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface"><span class="w-4 h-1.5 bg-[#883454] rounded-full"></span> TURB</span>
+<span class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface"><span class="w-4 h-1.5 bg-[#00450d] rounded-full"></span> TEMP</span>
+</div>
+<div class="flex-1 relative w-full h-full">
+<svg class="w-full h-full overflow-visible" height="100%" preserveaspectratio="none" viewbox="0 0 400 120" width="100%">
+<!-- Grid -->
+<path class="text-surface-variant" d="M0,20 L400,20 M0,50 L400,50 M0,80 L400,80 M0,110 L400,110" fill="none" stroke="currentColor" stroke-dasharray="2 4" stroke-width="0.5"></path>
+<!-- Lines -->
+<path d="M0,90 Q50,100 100,70 T200,80 T300,50 T400,60" fill="none" stroke="#00450d" stroke-width="2.5"></path> <!-- Temp -->
+<path d="M0,70 Q50,60 100,40 T200,50 T300,30 T400,20" fill="none" stroke="#01629e" stroke-width="2.5"></path> <!-- pH -->
+<path d="M0,30 Q50,20 100,60 T200,30 T300,70 T400,40" fill="none" stroke="#883454" stroke-width="2.5"></path> <!-- Turbidity -->
+<path d="M0,110 Q50,120 100,100 T200,90 T300,100 T400,80" fill="none" stroke="#ed6c02" stroke-width="2.5"></path> <!-- TDS -->
+</svg>
+</div>
+</div>
+</div>
+</div>
+<!-- Forecasting (Bottom) -->
+<div class="bg-surface-container-lowest border border-subtle rounded-DEFAULT flex flex-col h-[60%] shadow-sm">
+<div class="p-3 border-b border-subtle flex justify-between items-center bg-surface-container-lowest shrink-0">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="timeline">timeline</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Predictive Forecasting</h3>
+</div>
+<!-- Forecast Horizon Tabs -->
+<div class="flex gap-[1px] bg-outline-variant p-[2px] rounded-sm">
+<button class="px-4 py-1.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors rounded-sm">1D</button>
+<button class="px-4 py-1.5 bg-primary text-on-primary font-label-sm text-label-sm rounded-sm ml-[1px]">3D</button>
+<button class="px-4 py-1.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors rounded-sm ml-[1px]">7D</button>
+<button class="px-4 py-1.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors rounded-sm ml-[1px]">15D</button>
+</div>
+</div>
+<div class="flex-1 flex p-panel-gap gap-panel-gap min-h-0 bg-surface-container-low">
+<!-- Forecast Chart Area -->
+<div class="flex-[3] relative bg-surface-container-lowest rounded-sm p-5 border border-subtle/50">
+<div class="flex justify-between items-center mb-6">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wide">WQI 3-Day Forecast</span>
+<div class="flex gap-4">
+<span class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface"><span class="w-4 h-1.5 bg-primary rounded-full"></span> Historical</span>
+<span class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface"><span class="w-4 h-0 border-t-2 border-dashed border-secondary bg-transparent"></span> Predicted</span>
+<span class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface"><span class="w-4 h-4 bg-secondary-fixed opacity-50 rounded-sm"></span> 95% CI</span>
+</div>
+</div>
+<!-- Chart Graphic -->
+<div class="absolute inset-x-5 top-16 bottom-5 flex items-center justify-center">
+<svg class="w-full h-full overflow-visible" height="100%" preserveaspectratio="none" viewbox="0 0 500 200" width="100%">
+<!-- Grid -->
+<path class="text-surface-variant" d="M0,40 L500,40 M0,80 L500,80 M0,120 L500,120 M0,160 L500,160" fill="none" stroke="currentColor" stroke-dasharray="2 4" stroke-width="0.5"></path>
+<line class="text-outline" stroke="currentColor" stroke-dasharray="6 4" stroke-width="1.5" x1="300" x2="300" y1="0" y2="200"></line>
+<text class="font-label-sm text-[10px] text-on-surface-variant" fill="currentColor" text-anchor="end" x="290" y="20">NOW</text>
+<!-- Confidence Band -->
+<path d="M300,70 L350,50 L400,80 L450,40 L500,60 L500,120 L450,90 L400,140 L350,110 L300,120 Z" fill="#cfe5ff" opacity="0.6"></path>
+<!-- Historical Line -->
+<path d="M0,100 Q50,90 100,110 T200,80 T300,95" fill="none" stroke="#00450d" stroke-width="3.5"></path>
+<!-- Prediction Line -->
+<path d="M300,95 L350,80 L400,110 L450,65 L500,90" fill="none" stroke="#01629e" stroke-dasharray="8 6" stroke-width="3.5"></path>
+<!-- Current Point -->
+<circle cx="300" cy="95" fill="#01629e" r="6" stroke="#fff" stroke-width="2.5"></circle>
+</svg>
+</div>
+</div>
+<!-- Forecast Metrics/Table side panel -->
+<div class="flex-1 min-w-[240px] flex flex-col gap-panel-gap">
+<div class="bg-surface-container-lowest border border-subtle/50 rounded-sm p-4">
+<span class="font-label-md text-label-md text-on-surface-variant block border-b border-subtle pb-2 mb-3">Confidence Metrics</span>
+<div class="flex justify-between items-center mb-2">
+<span class="font-body-sm text-body-sm text-on-surface">RMSE</span>
+<span class="font-mono-data text-mono-data text-on-surface font-medium">0.042</span>
+</div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-body-sm text-body-sm text-on-surface">MAE</span>
+<span class="font-mono-data text-mono-data text-on-surface font-medium">0.031</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface">R²</span>
+<span class="font-mono-data text-mono-data text-status-valid font-bold">0.94</span>
+</div>
+</div>
+<!-- Dense Data Table for Predictions -->
+<div class="border border-subtle/50 rounded-sm overflow-hidden flex-1 flex flex-col bg-surface-container-lowest">
+<div class="bg-surface-container-low border-b border-subtle px-3 py-2 grid grid-cols-2 gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Time (+Hr)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-right">Pred WQI</span>
+</div>
+<div class="flex-1 overflow-y-auto">
+<div class="px-3 py-2 grid grid-cols-2 gap-2 border-b border-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="font-mono-data text-mono-data text-on-surface-variant">+06</span>
+<span class="font-mono-data text-mono-data text-on-surface text-right">77.2</span>
+</div>
+<div class="px-3 py-2 grid grid-cols-2 gap-2 border-b border-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="font-mono-data text-mono-data text-on-surface-variant">+12</span>
+<span class="font-mono-data text-mono-data text-on-surface text-right">76.8</span>
+</div>
+<div class="px-3 py-2 grid grid-cols-2 gap-2 border-b border-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="font-mono-data text-mono-data text-on-surface-variant">+18</span>
+<span class="font-mono-data text-mono-data text-status-review text-right font-medium">74.1</span>
+</div>
+<div class="px-3 py-2 grid grid-cols-2 gap-2 border-b border-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="font-mono-data text-mono-data text-on-surface-variant">+24</span>
+<span class="font-mono-data text-mono-data text-on-surface text-right">75.5</span>
+</div>
+<div class="px-3 py-2 grid grid-cols-2 gap-2 hover:bg-surface-container-low transition-colors">
+<span class="font-mono-data text-mono-data text-on-surface-variant">+30</span>
+<span class="font-mono-data text-mono-data text-on-surface text-right">76.0</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

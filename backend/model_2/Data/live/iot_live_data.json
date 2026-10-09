@@ -1,0 +1,17 @@
+{
+    "id": "g_mws.240575",
+    "mws_code": "4D4F2m3",
+    "device_id": "ESP32_SHIGGAON_NODE_01",
+    "rainfall_mm": 95.49,
+    "rainfall_mm_hr": 95.49,
+    "soil_moisture_pct": 67.6,
+    "water_level_cm": 16.2,
+    "turbidity_ntu": 0.0,
+    "air_temperature_c": 28.4,
+    "humidity_pct": 63.5,
+    "water_temperature_c": 26.3,
+    "ph": 6.92,
+    "year": 2026,
+    "month": 10,
+    "timestamp": "2026-10-08T11:37:51.518601"
+}

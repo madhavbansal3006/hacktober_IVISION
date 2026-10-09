@@ -1,0 +1,152 @@
+{
+  "baseline_experiment_B": {
+    "accuracy": 0.8050847457627118,
+    "macro_f1": 0.8066420789180924,
+    "weighted_f1": 0.8072771680223646,
+    "per_class": {
+      "Forest": {
+        "precision": 0.9306784660766961,
+        "recall": 0.8912429378531074,
+        "f1": 0.9105339105339105,
+        "support": 708
+      },
+      "Agriculture": {
+        "precision": 0.7237008871989861,
+        "recall": 0.7875862068965517,
+        "f1": 0.7542932628797886,
+        "support": 725
+      },
+      "Water": {
+        "precision": 0.9183431952662722,
+        "recall": 0.7838383838383839,
+        "f1": 0.8457765667574932,
+        "support": 990
+      },
+      "Built-up": {
+        "precision": 0.7691373025516404,
+        "recall": 0.7599039615846338,
+        "f1": 0.7644927536231884,
+        "support": 833
+      },
+      "Barren": {
+        "precision": 0.7058152793614595,
+        "recall": 0.8187830687830688,
+        "f1": 0.7581139007960809,
+        "support": 756
+      }
+    },
+    "full_scene_predicted_percent": {
+      "Forest": 20.17,
+      "Agriculture": 62.65,
+      "Water": 0.73,
+      "Built-up": 14.76,
+      "Barren": 1.7
+    }
+  },
+  "model_1_1": {
+    "model": "Model 1.1 (hybrid sqrt-proportional, block-capped sampling)",
+    "n_train_samples": 13442,
+    "n_test_samples": 4559,
+    "sample_counts_by_class": {
+      "Forest": 4725,
+      "Agriculture": 10112,
+      "Water": 873,
+      "Built-up": 1756,
+      "Barren": 535
+    },
+    "accuracy": 0.7615705198508445,
+    "macro_f1": 0.6437929551852875,
+    "weighted_f1": 0.7573864625209118,
+    "per_class": {
+      "Forest": {
+        "precision": 0.7462082912032356,
+        "recall": 0.6660649819494585,
+        "f1": 0.703862660944206,
+        "support": 1108
+      },
+      "Agriculture": {
+        "precision": 0.8120828942746751,
+        "recall": 0.8754259750094661,
+        "f1": 0.8425655976676385,
+        "support": 2641
+      },
+      "Water": {
+        "precision": 0.7929292929292929,
+        "recall": 0.6796536796536796,
+        "f1": 0.7319347319347319,
+        "support": 231
+      },
+      "Built-up": {
+        "precision": 0.5441595441595442,
+        "recall": 0.45368171021377673,
+        "f1": 0.4948186528497409,
+        "support": 421
+      },
+      "Barren": {
+        "precision": 0.42528735632183906,
+        "recall": 0.46835443037974683,
+        "f1": 0.4457831325301205,
+        "support": 158
+      }
+    },
+    "confusion_matrix": [
+      [
+        738,
+        329,
+        3,
+        27,
+        11
+      ],
+      [
+        210,
+        2312,
+        10,
+        93,
+        16
+      ],
+      [
+        10,
+        6,
+        157,
+        1,
+        57
+      ],
+      [
+        28,
+        186,
+        0,
+        191,
+        16
+      ],
+      [
+        3,
+        14,
+        28,
+        39,
+        74
+      ]
+    ],
+    "confusion_matrix_class_order": [
+      "Forest",
+      "Agriculture",
+      "Water",
+      "Built-up",
+      "Barren"
+    ],
+    "full_scene_predicted_percent": {
+      "Forest": 22.9,
+      "Agriculture": 71.68,
+      "Water": 0.96,
+      "Built-up": 3.94,
+      "Barren": 0.52
+    },
+    "elapsed_seconds": 124.8
+  },
+  "reference_label_prevalence_percent": {
+    "Forest": 17.35,
+    "Agriculture": 79.45,
+    "Water": 0.59,
+    "Built-up": 2.4,
+    "Barren": 0.22
+  }
+}

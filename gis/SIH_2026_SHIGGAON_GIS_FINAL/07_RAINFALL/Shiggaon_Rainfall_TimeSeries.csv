@@ -1,0 +1,20 @@
+# Source: Karnataka State Natural Disaster Monitoring Centre (KSNDMC) annual rainfall reports,
+# redistributed via OpenCity CKAN: https://data.opencity.in/dataset/karnataka-annual-rainfall-districts-taluks-and-hoblis
+# All rows below verified by directly fetching the official CSV resource for each year (fetched live 2026-08-27).
+# Rainfall in mm. "Normal" = long-period average for that unit; "Actual" = that year's observed total; "Departure%" = (Actual-Normal)/Normal*100.
+# Level: T = Shiggaon Taluk aggregate, H = individual Hobli within Shiggaon Taluk.
+Year,Level,Unit,Normal_mm,Actual_mm,Departure_pct,Source_Resource
+2024,T,Shiggaon,813.6,922.4,13,karnataka_rainfall_2024_taluk_hobli.csv
+2024,H,Shiggaon,813.6,809.7,0,karnataka_rainfall_2024_taluk_hobli.csv
+2024,H,Bankapur,808.0,946.2,17,karnataka_rainfall_2024_taluk_hobli.csv
+2024,H,Dhundsi,955.2,987.0,3,karnataka_rainfall_2024_taluk_hobli.csv
+2022,T,Shiggaon,814,1004,23,karnataka_rainfall_2022_taluk.csv
+2021,T,Shiggaon,814,975,20,karnataka_rainfall_2021_taluk.csv
+# --- Haveri DISTRICT-level annual/seasonal figures (context; Shiggaon taluk sits within this district) ---
+Year,Level,Unit,Normal_mm,Actual_mm,Departure_pct,Source_Resource
+2023,D,Haveri_Annual,800,483,-40,karnataka_rainfall_2023_districts.csv
+2023,D,Haveri_PreMonsoon,121.5,83.1,-32,karnataka_rainfall_2023_districts.csv
+2023,D,Haveri_SWMonsoon,512,350,-32,karnataka_rainfall_2023_districts.csv
+2023,D,Haveri_NEMonsoon,166,51,-69,karnataka_rainfall_2023_districts.csv
+2022,D,Haveri_Annual,800,1023,28,karnataka_rainfall_2022_taluk.csv
+2024,D,Haveri_Annual,799.5,899.4,12,karnataka_rainfall_2024_taluk_hobli.csv

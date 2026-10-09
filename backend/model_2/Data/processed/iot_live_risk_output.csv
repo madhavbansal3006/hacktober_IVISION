@@ -1,0 +1,2 @@
+id,device_id,year,month,timestamp,source,base_risk_score,live_rainfall_mm,rainfall_z_score,live_ml_anomaly_score,iot_disturbance_score,live_risk_score,live_risk_category,live_risk_drivers,compound_event_detected,compound_event_type,compound_alert_level,recommended_action
+g_mws.240575,ESP32_SHIGGAON_NODE_01,2026,10,2026-10-08T11:37:51.518601,live,48.56,95.49,-0.87,34.45,0.076,47.52,MODERATE,No significant live anomaly,False,No compound environmental event,NORMAL,Continue routine monitoring

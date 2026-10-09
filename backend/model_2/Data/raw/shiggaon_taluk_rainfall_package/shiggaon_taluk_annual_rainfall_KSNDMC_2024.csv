@@ -1,0 +1,5 @@
+hobli,taluk,district,year,normal_rainfall_mm,actual_rainfall_mm,departure_percent
+Shiggaon,Shiggaon,Haveri,2024,813.6,809.7,0
+Bankapur,Shiggaon,Haveri,2024,808.0,946.2,17
+Dhundsi,Shiggaon,Haveri,2024,955.2,987.0,3
+Shiggaon_Taluk_Total,Shiggaon,Haveri,2024,813.6,922.4,13

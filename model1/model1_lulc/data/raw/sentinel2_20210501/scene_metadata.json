@@ -1,0 +1,66 @@
+{
+    "acquisition_date": "2021-05-01T05:16:49.024Z",
+    "tile_id": "T43PES",
+    "crs": "EPSG:32643",
+    "resolution_meters": 10.0,
+    "dimensions": {
+        "width": 3043,
+        "height": 3274
+    },
+    "tile_cloud_coverage_assessment_pct": 0.380241,
+    "shiggaon_study_area_pixels": 5835688,
+    "shiggaon_cloud_contamination_pct": 0.7907036839529461,
+    "shiggaon_cloud_shadow_contamination_pct": 0.7433570814615175,
+    "shiggaon_total_invalid_masked_pct": 2.0644181114548963,
+    "shiggaon_valid_pixels_pct": 97.93558188854512,
+    "band_statistics": {
+        "B02": {
+            "min": 828,
+            "max": 8720,
+            "mean": 1652.174900856748,
+            "median": 1616.0,
+            "std": 268.1957266216841,
+            "valid_pixel_percentage": 97.93558188854512
+        },
+        "B03": {
+            "min": 1115,
+            "max": 8608,
+            "mean": 1938.7096508180357,
+            "median": 1882.0,
+            "std": 304.41563114376123,
+            "valid_pixel_percentage": 97.93558188854512
+        },
+        "B04": {
+            "min": 1,
+            "max": 8536,
+            "mean": 2150.1089717534687,
+            "median": 2090.0,
+            "std": 500.27732306789574,
+            "valid_pixel_percentage": 97.93558188854512
+        },
+        "B08": {
+            "min": 855,
+            "max": 9576,
+            "mean": 3488.132993677916,
+            "median": 3568.0,
+            "std": 709.1882480655389,
+            "valid_pixel_percentage": 97.93539339320402
+        },
+        "B11": {
+            "min": 1077,
+            "max": 8883,
+            "mean": 4384.41414487469,
+            "median": 4333.0,
+            "std": 834.1453844968137,
+            "valid_pixel_percentage": 97.93558188854512
+        }
+    },
+    "output_paths": {
+        "B02": "data\\raw\\sentinel2_20210501\\B02.tif",
+        "B03": "data\\raw\\sentinel2_20210501\\B03.tif",
+        "B04": "data\\raw\\sentinel2_20210501\\B04.tif",
+        "B08": "data\\raw\\sentinel2_20210501\\B08.tif",
+        "B11": "data\\raw\\sentinel2_20210501\\B11.tif",
+        "SCL": "data\\raw\\sentinel2_20210501\\SCL.tif"
+    }
+}

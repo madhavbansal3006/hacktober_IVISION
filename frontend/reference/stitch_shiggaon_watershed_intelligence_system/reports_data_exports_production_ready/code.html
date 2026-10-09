@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reports &amp; Data Exports - Watershed Decision Support</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            "colors": {
+                "status-missing": "#757575",
+                "on-secondary-container": "#004c7d",
+                "primary-fixed-dim": "#91d78a",
+                "tertiary-fixed": "#ffd9e2",
+                "surface-container-low": "#eef6e7",
+                "surface": "#f7fbf1",
+                "status-suspicious": "#d32f2f",
+                "surface-container-highest": "#dde5d6",
+                "tertiary": "#6b1d3d",
+                "primary": "#00450d",
+                "error": "#ba1a1a",
+                "surface-tint": "#2a6b2c",
+                "inverse-surface": "#2b3328",
+                "on-background": "#161d14",
+                "status-review": "#ed6c02",
+                "secondary-container": "#7cbeff",
+                "surface-container-high": "#e2ebdc",
+                "on-surface": "#161d14",
+                "on-primary": "#ffffff",
+                "error-container": "#ffdad6",
+                "surface-bright": "#f4fced",
+                "status-inside": "#0288d1",
+                "on-tertiary-container": "#ffaec6",
+                "status-outside": "#7b1fa2",
+                "surface-container": "#e8f1e1",
+                "on-error": "#ffffff",
+                "secondary": "#01629e",
+                "on-primary-fixed": "#002203",
+                "on-secondary-fixed": "#001d34",
+                "secondary-fixed-dim": "#9acbff",
+                "status-valid": "#2e7d32",
+                "inverse-primary": "#91d78a",
+                "border-strong": "#717a6d",
+                "on-tertiary-fixed": "#3e001d",
+                "inverse-on-surface": "#ebf3e4",
+                "surface-variant": "#dde5d6",
+                "on-secondary-fixed-variant": "#004a79",
+                "background": "#f4fced",
+                "on-error-container": "#93000a",
+                "primary-container": "#1b5e20",
+                "outline-variant": "#c0c9bb",
+                "on-tertiary-fixed-variant": "#7a2949",
+                "secondary-fixed": "#cfe5ff",
+                "on-tertiary": "#ffffff",
+                "on-primary-container": "#90d689",
+                "tertiary-container": "#883454",
+                "border-subtle": "#c0c9bb",
+                "on-primary-fixed-variant": "#0c5216",
+                "on-secondary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "tertiary-fixed-dim": "#ffb1c8",
+                "surface-dim": "#d4ddce",
+                "on-surface-variant": "#41493e",
+                "primary-fixed": "#acf4a4",
+                "outline": "#717a6d"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "sidebar-w": "60px",
+                "gutter": "12px",
+                "unit": "4px",
+                "sidebar-expanded": "240px",
+                "panel-gap": "4px",
+                "margin-md": "16px",
+                "margin-sm": "8px"
+            },
+            "fontFamily": {
+                "display": ["Inter"],
+                "label-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-md": ["Inter"],
+                "headline-sm": ["Inter"],
+                "body-sm": ["Inter"],
+                "body-md": ["Inter"],
+                "mono-data": ["jetbrainsMono"],
+                "headline-lg": ["Inter"],
+                "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                "display": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+                "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                "headline-sm": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                "mono-data": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+            }
+        }
+    }
+}
+</script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .material-symbols-outlined.filled {
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+</style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md h-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="bg-surface border-r border-subtle fixed left-0 top-0 h-full z-40 flex flex-col pt-12 w-sidebar-expanded transition-all duration-200 ease-in-out hidden md:flex">
+<div class="px-margin-md pb-margin-md border-b border-subtle mb-margin-md mt-margin-sm">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Shiggaon Taluk</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Haveri District</p>
+</div>
+<div class="flex-1 overflow-y-auto">
+<a class="flex items-center gap-margin-sm px-margin-md py-margin-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-margin-sm px-margin-md py-margin-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="map">map</span>
+<span>GIS Explorer</span>
+</a>
+<a class="flex items-center gap-margin-sm px-margin-md py-margin-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="layers">layers</span>
+<span>LULC Analysis</span>
+</a>
+<a class="flex items-center gap-margin-sm px-margin-md py-margin-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="opacity">opacity</span>
+<span>Water Quality</span>
+</a>
+<a class="flex items-center gap-margin-sm px-margin-md py-margin-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="sensors">sensors</span>
+<span>IoT Monitoring</span>
+</a>
+<a class="flex items-center gap-margin-sm px-margin-md py-margin-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="image">image</span>
+<span>Geo-Coded Images</span>
+</a>
+<a class="flex items-center gap-margin-sm px-margin-md py-margin-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="qr_code_2">qr_code_2</span>
+<span>Watersheds</span>
+</a>
+<a class="flex items-center gap-margin-sm px-margin-md py-margin-sm bg-primary-container text-on-primary-container font-semibold transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined filled text-[20px]" data-icon="assessment">assessment</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-margin-sm px-margin-md py-margin-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-md h-12 bg-surface-container-lowest border-b border-subtle md:pl-[calc(240px+16px)]">
+<div class="flex items-center gap-margin-md">
+<span class="font-headline-md text-headline-md font-extrabold text-primary">Watershed Decision Support</span>
+</div>
+<div class="flex items-center gap-margin-sm text-primary">
+<button class="hover:bg-surface-container-high p-unit rounded-full transition-colors duration-150 ease-in-out flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:bg-surface-container-high p-unit rounded-full transition-colors duration-150 ease-in-out flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+</button>
+<button class="hover:bg-surface-container-high p-unit rounded-full transition-colors duration-150 ease-in-out flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-sidebar-expanded mt-12 overflow-y-auto p-margin-md flex flex-col gap-margin-md bg-surface-container-lowest">
+<div class="flex justify-between items-end mb-margin-sm">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-unit">Reports &amp; Data Exports</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Generate, view, and export analytical data across the watershed.</p>
+</div>
+<div class="flex gap-margin-sm">
+<button class="bg-surface text-on-surface border border-outline-variant px-3 py-1.5 rounded-md font-label-md text-label-md flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[18px]">file_download</span> CSV
+            </button>
+<button class="bg-surface text-on-surface border border-outline-variant px-3 py-1.5 rounded-md font-label-md text-label-md flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[18px]">map</span> GeoPackage
+            </button>
+<button class="bg-primary text-on-primary shadow-sm px-4 py-1.5 rounded-md font-label-md text-label-md flex items-center gap-2 hover:bg-primary/90 transition-all font-semibold">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span> Generate PDF
+            </button>
+</div>
+</div>
+<!-- Report Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-gutter">
+<!-- LULC Analysis Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-margin-md hover:shadow-md transition-all cursor-pointer group flex flex-col">
+<div class="flex justify-between items-center mb-margin-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">LULC Analysis</h3>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]">layers</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-margin-md">Land Use / Land Cover change detection and area statistics.</p>
+<div class="flex flex-col gap-2 mt-auto mb-margin-md">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="font-body-sm text-body-sm">Last Generated: 2023-10-22 14:30</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">file_copy</span>
+<span class="font-body-sm text-body-sm">Format: GeoPackage</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-md text-label-md text-status-valid bg-status-valid/10 px-2 py-0.5 rounded border border-status-valid/20">Ready</span>
+<button class="text-on-surface font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1 font-semibold">Configure <span class="material-symbols-outlined text-[18px]">arrow_forward</span></button>
+</div>
+</div>
+<!-- Water Quality Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-margin-md hover:shadow-md transition-all cursor-pointer group flex flex-col">
+<div class="flex justify-between items-center mb-margin-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Water Quality</h3>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]">opacity</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-margin-md">Parameter trends (pH, DO, Turbidity) over selected timeframes.</p>
+<div class="flex flex-col gap-2 mt-auto mb-margin-md">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="font-body-sm text-body-sm">Last Generated: 2023-10-24 09:15</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">file_copy</span>
+<span class="font-body-sm text-body-sm">Format: PDF</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-md text-label-md text-status-valid bg-status-valid/10 px-2 py-0.5 rounded border border-status-valid/20">Ready</span>
+<button class="text-on-surface font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1 font-semibold">Configure <span class="material-symbols-outlined text-[18px]">arrow_forward</span></button>
+</div>
+</div>
+<!-- IoT Telemetry Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-margin-md hover:shadow-md transition-all cursor-pointer group flex flex-col">
+<div class="flex justify-between items-center mb-margin-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">IoT Telemetry</h3>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]">sensors</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-margin-md">Raw and aggregated sensor data export from field stations.</p>
+<div class="flex flex-col gap-2 mt-auto mb-margin-md">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="font-body-sm text-body-sm">Last Generated: 2023-10-01 00:05</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">file_copy</span>
+<span class="font-body-sm text-body-sm">Format: CSV</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-md text-label-md text-status-review bg-status-review/10 px-2 py-0.5 rounded border border-status-review/20">Syncing</span>
+<button class="text-on-surface font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1 font-semibold">Configure <span class="material-symbols-outlined text-[18px]">arrow_forward</span></button>
+</div>
+</div>
+<!-- Integrated Assessment Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-margin-md hover:shadow-md transition-all cursor-pointer group flex flex-col">
+<div class="flex justify-between items-center mb-margin-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Integrated Assessment</h3>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]">assessment</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-margin-md">Comprehensive watershed health index and executive summary.</p>
+<div class="flex flex-col gap-2 mt-auto mb-margin-md">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="font-body-sm text-body-sm">Last Generated: 2023-09-15 11:00</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">file_copy</span>
+<span class="font-body-sm text-body-sm">Format: PDF</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-md text-label-md text-status-valid bg-status-valid/10 px-2 py-0.5 rounded border border-status-valid/20">Ready</span>
+<button class="text-on-surface font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1 font-semibold">Configure <span class="material-symbols-outlined text-[18px]">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<!-- Recent Generations Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm flex-1 flex flex-col mt-margin-md overflow-hidden">
+<div class="px-margin-md py-3 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Recent Generations</h3>
+<div class="flex gap-unit">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="pl-9 pr-3 py-1.5 border border-outline-variant bg-surface-container-lowest text-body-sm font-body-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none rounded-md w-64" placeholder="Filter reports..." type="text"/>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto flex-1 bg-surface-container-lowest">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="py-3 px-margin-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider w-1/4">Report Name</th>
+<th class="py-3 px-margin-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider w-1/5">Date Generated</th>
+<th class="py-3 px-margin-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider w-1/3">Parameters</th>
+<th class="py-3 px-margin-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider w-32">Format</th>
+<th class="py-3 px-margin-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right w-24">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<tr class="hover:bg-surface-container-low border-b border-outline-variant last:border-b-0 transition-colors group">
+<td class="py-4 px-margin-md font-medium text-on-surface">Q3 Water Quality Summary</td>
+<td class="py-4 px-margin-md text-on-surface-variant">2023-10-24 09:15</td>
+<td class="py-4 px-margin-md text-on-surface-variant truncate max-w-[200px]">Stations: ST-01, ST-02; Params: pH, DO</td>
+<td class="py-4 px-margin-md">
+<span class="font-label-md text-label-md bg-surface-container border border-outline-variant px-2 py-0.5 rounded text-on-surface-variant">PDF</span>
+</td>
+<td class="py-4 px-margin-md text-right">
+<button class="text-primary hover:text-primary-container p-1.5 rounded hover:bg-surface-container transition-colors" title="Download">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low border-b border-outline-variant last:border-b-0 transition-colors group">
+<td class="py-4 px-margin-md font-medium text-on-surface">Varada River Basin LULC</td>
+<td class="py-4 px-margin-md text-on-surface-variant">2023-10-22 14:30</td>
+<td class="py-4 px-margin-md text-on-surface-variant truncate max-w-[200px]">Classes: Agriculture, Forest, Urban; Year: 2023</td>
+<td class="py-4 px-margin-md">
+<span class="font-label-md text-label-md bg-surface-container border border-outline-variant px-2 py-0.5 rounded text-on-surface-variant">GeoPackage</span>
+</td>
+<td class="py-4 px-margin-md text-right">
+<button class="text-primary hover:text-primary-container p-1.5 rounded hover:bg-surface-container transition-colors" title="Download">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low border-b border-outline-variant last:border-b-0 transition-colors group">
+<td class="py-4 px-margin-md font-medium text-on-surface">Monthly Telemetry Export</td>
+<td class="py-4 px-margin-md text-on-surface-variant">2023-10-01 00:05</td>
+<td class="py-4 px-margin-md text-on-surface-variant truncate max-w-[200px]">All active stations; Sep 2023 full dataset</td>
+<td class="py-4 px-margin-md">
+<span class="font-label-md text-label-md bg-surface-container border border-outline-variant px-2 py-0.5 rounded text-on-surface-variant">CSV</span>
+</td>
+<td class="py-4 px-margin-md text-right">
+<button class="text-primary hover:text-primary-container p-1.5 rounded hover:bg-surface-container transition-colors" title="Download">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low border-b border-outline-variant last:border-b-0 transition-colors group">
+<td class="py-4 px-margin-md font-medium text-on-surface">Executive Assessment 2023</td>
+<td class="py-4 px-margin-md text-on-surface-variant">2023-09-15 11:00</td>
+<td class="py-4 px-margin-md text-on-surface-variant truncate max-w-[200px]">Full Taluk; Multi-criteria analysis</td>
+<td class="py-4 px-margin-md">
+<span class="font-label-md text-label-md bg-surface-container border border-outline-variant px-2 py-0.5 rounded text-on-surface-variant">PDF</span>
+</td>
+<td class="py-4 px-margin-md text-right">
+<button class="text-primary hover:text-primary-container p-1.5 rounded hover:bg-surface-container transition-colors" title="Download">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</body></html>

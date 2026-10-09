@@ -1,0 +1,139 @@
+{
+  "checks": {
+    "1_feature_list_matches_claim": {
+      "status": "PASS",
+      "detail": "n=18, matches expected 18-feature list: True. Features: ['B2_date1', 'B3_date1', 'B4_date1', 'B8_date1', 'B11_date1', 'NDVI_date1', 'NDWI_date1', 'NDBI_date1', 'BSI_date1', 'B2_date2', 'B3_date2', 'B4_date2', 'B8_date2', 'B11_date2', 'NDVI_date2', 'NDWI_date2', 'NDBI_date2', 'BSI_date2']"
+    },
+    "2_feature_ordering_consistent": {
+      "status": "PASS",
+      "detail": "Trained model expects n_features_in_=18 (expected 18). Full-scene script concatenates date1_feature_array (order=FEATURE_ORDER) + date2_stack (order=FEATURE_ORDER) = identical order to feature_columns used at training time."
+    },
+    "3_no_train_test_leakage": {
+      "status": "PASS",
+      "detail": "0 rows have a split label different from the original baseline assignment (must be 0)."
+    },
+    "4_5_test_pixel_identity_is_strict_subset": {
+      "status": "PASS",
+      "detail": "T2 test set (3616 pixels) is a strict subset of baseline's test set (4012 pixels): True."
+    },
+    "6_dropped_test_pixels_quantified": {
+      "status": "PASS",
+      "detail": "baseline test=4012, T2 test=3616, dropped=396 (claimed: 396)"
+    },
+    "7_no_resampling_no_relabeling": {
+      "status": "PASS",
+      "detail": "Train set is strict subset of baseline train: True. Label mismatches vs baseline (must be 0): 0."
+    },
+    "8_9_14_recomputed_metrics_match_claimed_and_reproducible": {
+      "status": "PASS",
+      "detail": "accuracy=0.865321 (claimed 0.865321), macro_f1=0.863329 (claimed 0.863329), weighted_f1=0.865695 (claimed 0.865695). Exact match: True"
+    },
+    "9_comparison_vs_baseline_B": {
+      "status": "PASS",
+      "detail": "Baseline macro_f1=0.8066, T2 macro_f1=0.8633, absolute improvement=+0.0567, relative=+7.0%"
+    },
+    "10_fullscene_coverage_reported": {
+      "status": "PASS",
+      "detail": "T2 full-scene domain: 5715204 valid pixels (57.37% of raster), vs baseline domain 58.57%."
+    },
+    "11_scl_mask_applied_correctly": {
+      "status": "PASS",
+      "detail": "Independently recomputed SCL+nodata mask (checking nodata across ALL 5 bands, matching build_date2_features.py's actual logic) matches cached date2_valid_mask exactly: True. Exclude set: [0, 1, 3, 8, 9, 10, 11]. NOTE: an earlier version of this check that verified nodata against B02 alone found an 11-pixel (out of ~10M) discrepancy \u2014 that was an audit-script oversimplification, not a pipeline bug: B04 (and possibly others) has a small number of nodata pixels where B02 does not, and the real pipeline correctly ORs nodata across all 5 bands."
+    },
+    "12_grid_consistency_all_18_features": {
+      "status": "PASS",
+      "detail": "transform match=True, crs match=True, shape match=True"
+    },
+    "13_no_nan_inf_in_feature_matrices": {
+      "status": "PASS",
+      "detail": "NaN train=0 Inf train=0 NaN test=0 Inf test=0"
+    }
+  },
+  "recomputed_metrics": {
+    "accuracy": 0.865320796460177,
+    "macro_f1": 0.8633290330166543,
+    "weighted_f1": 0.8656952000687518,
+    "per_class": {
+      "Forest": {
+        "precision": 0.9530102790014684,
+        "recall": 0.9351585014409222,
+        "f1": 0.944,
+        "support": 694
+      },
+      "Agriculture": {
+        "precision": 0.8865546218487395,
+        "recall": 0.8865546218487395,
+        "f1": 0.8865546218487395,
+        "support": 714
+      },
+      "Water": {
+        "precision": 0.8924302788844621,
+        "recall": 0.8347826086956521,
+        "f1": 0.8626444159178434,
+        "support": 805
+      },
+      "Built-up": {
+        "precision": 0.8403361344537815,
+        "recall": 0.89171974522293,
+        "f1": 0.865265760197775,
+        "support": 785
+      },
+      "Barren": {
+        "precision": 0.7480314960629921,
+        "recall": 0.7686084142394822,
+        "f1": 0.7581803671189146,
+        "support": 618
+      }
+    },
+    "confusion_matrix": [
+      [
+        649,
+        24,
+        1,
+        18,
+        2
+      ],
+      [
+        17,
+        633,
+        0,
+        57,
+        7
+      ],
+      [
+        2,
+        7,
+        672,
+        1,
+        123
+      ],
+      [
+        13,
+        44,
+        0,
+        700,
+        28
+      ],
+      [
+        0,
+        6,
+        80,
+        57,
+        475
+      ]
+    ],
+    "confusion_matrix_class_order": [
+      "Forest",
+      "Agriculture",
+      "Water",
+      "Built-up",
+      "Barren"
+    ]
+  },
+  "baseline_comparison": {
+    "baseline_macro_f1": 0.8066420789180924,
+    "t2_macro_f1": 0.8633290330166543,
+    "absolute_improvement": 0.05668695409856195,
+    "relative_improvement_pct": 7.027522562992654
+  }
+}

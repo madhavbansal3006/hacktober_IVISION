@@ -1,0 +1,90 @@
+{
+  "study_area": "Shiggaon Taluk, Haveri District, Karnataka, India",
+  "production_model": "Experiment B (equal-count sampling, class_weight=None)",
+  "lulc_class_percent": {
+    "Forest": 20.06774522558437,
+    "Agriculture": 63.07797812357343,
+    "Water": 0.7258955585014141,
+    "Built-up": 14.455587755890994,
+    "Barren": 1.6727933364497896
+  },
+  "confidence": {
+    "verification_status": "MATCH",
+    "nodata_fix_status": "outputs/lulc_confidence.tif previously declared nodata=-1.0 in its GeoTIFF header while actual invalid pixels were physically stored as 0.0 (0 pixels equaled -1.0 in the file). This was identified and FIXED directly in the file: nodata is now consistently 0.0, matching both the actual invalid-pixel values and lulc_prediction.tif's own nodata convention. Verified: valid confidence pixels are unchanged (bit-identical before/after), prediction/confidence valid-pixel masks now match exactly, and the production model and all classification outputs (lulc_prediction.tif, training_data.csv, metrics, class encoding) were not touched by this fix.",
+    "n_valid_pixels": 5835688,
+    "mean_confidence": 0.7832760810852051,
+    "low_confidence_pct": 7.044465022804509,
+    "medium_confidence_pct": 33.14226188925796,
+    "high_confidence_pct": 59.81327308793753,
+    "thresholds": {
+      "low": "<0.5",
+      "medium": "0.5-0.75",
+      "high": ">=0.75"
+    }
+  },
+  "watershed_data_quality": {
+    "total_watersheds": 66,
+    "category_counts": {
+      "LOW": 35,
+      "GOOD": 27,
+      "ACCEPTABLE": 3,
+      "INSUFFICIENT_DATA": 1
+    },
+    "reliable_count": 30,
+    "unreliable_count": 36,
+    "unreliable_watershed_ids": [
+      "4D4F2m3",
+      "4D4F2m4",
+      "4D5B5n5",
+      "4D5B5n6",
+      "4D5B5n4",
+      "4D4F2m1",
+      "4D5B5k3",
+      "4D5B5k2",
+      "4D5B5n3",
+      "5B1A7n3",
+      "5B1A7g5",
+      "5B1A7f4",
+      "5B1A7f7",
+      "5B1A7n6",
+      "5B1A7n4",
+      "4D5B5k8",
+      "4D5B5k9",
+      "4D5B5k7",
+      "4D5B5k6",
+      "5B1A7c1",
+      "5B1A7b2",
+      "5B1A7b3",
+      "5B1A6p3",
+      "5B1A6p4",
+      "4D4F4d3",
+      "4D4F4d4",
+      "4D4F4c5",
+      "4D4F4b1",
+      "4D4F2h7",
+      "4D4F2h4",
+      "4D4F4b3",
+      "4D4F2j4",
+      "4D4F2k4",
+      "4D4F2k1",
+      "4D4F2k2",
+      "4D4F2k5"
+    ]
+  },
+  "interpretation_guidance": {
+    "GOOD": "coverage >= 90% of true watershed area \u2014 safe to interpret directly.",
+    "ACCEPTABLE": "coverage 75-90% \u2014 usable with minor caveat.",
+    "LOW": "coverage < 75% \u2014 statistics reflect only a small, possibly unrepresentative fragment of the watershed. Do not present as if describing the whole watershed.",
+    "INSUFFICIENT_DATA": "valid pixel count below the defensible minimum (100 px) \u2014 statistics should not be interpreted at all."
+  },
+  "known_limitations": [
+    "Built-up is over-predicted relative to WorldCover reference prevalence.",
+    "Barren is over-predicted relative to WorldCover reference prevalence.",
+    "Agriculture <-> Built-up spectral confusion exists.",
+    "Water <-> Barren confusion exists because of heterogeneous reference labeling.",
+    "36/66 micro-watersheds have LOW or INSUFFICIENT_DATA coverage.",
+    "Only one Sentinel-2 date is currently used.",
+    "No SCL/cloud-shadow masking is available.",
+    "WorldCover is reference/pseudo-ground-truth and is not field-verified."
+  ]
+}

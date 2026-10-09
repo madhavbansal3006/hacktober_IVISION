@@ -1,0 +1,133 @@
+{
+  "satellite": "UNKNOWN (bands provided pre-processed, no STAC query performed)",
+  "product": "UNKNOWN",
+  "acquisition_date": "UNKNOWN",
+  "tile": "UNKNOWN",
+  "cloud_percentage": "UNKNOWN (no SCL/QA layer provided; only nodata masking applied)",
+  "crs": "EPSG:32643",
+  "resolution_m": 10.0,
+  "bands_used": [
+    "B02",
+    "B03",
+    "B04",
+    "B08",
+    "B11"
+  ],
+  "indices": [
+    "NDVI",
+    "NDWI",
+    "NDBI",
+    "BSI"
+  ],
+  "classifier": "RandomForestClassifier",
+  "selected_experiment": "B_equal_count_unweighted",
+  "hyperparameters": {
+    "n_estimators": 200,
+    "class_weight": null,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "sampling_strategy": "equal_count, 3000 samples/class, spatial block split (300m blocks, 25% test)",
+  "n_training_samples": 10988,
+  "n_validation_samples": 4012,
+  "evaluation_metrics": {
+    "accuracy": 0.8050847457627118,
+    "macro_f1": 0.8066420789180924,
+    "weighted_f1": 0.8072771680223646,
+    "per_class": {
+      "Forest": {
+        "precision": 0.9306784660766961,
+        "recall": 0.8912429378531074,
+        "f1": 0.9105339105339105,
+        "support": 708
+      },
+      "Agriculture": {
+        "precision": 0.7237008871989861,
+        "recall": 0.7875862068965517,
+        "f1": 0.7542932628797886,
+        "support": 725
+      },
+      "Water": {
+        "precision": 0.9183431952662722,
+        "recall": 0.7838383838383839,
+        "f1": 0.8457765667574932,
+        "support": 990
+      },
+      "Built-up": {
+        "precision": 0.7691373025516404,
+        "recall": 0.7599039615846338,
+        "f1": 0.7644927536231884,
+        "support": 833
+      },
+      "Barren": {
+        "precision": 0.7058152793614595,
+        "recall": 0.8187830687830688,
+        "f1": 0.7581139007960809,
+        "support": 756
+      }
+    }
+  },
+  "full_scene_predicted_class_percent": {
+    "Forest": 20.17,
+    "Agriculture": 62.65,
+    "Water": 0.73,
+    "Built-up": 14.76,
+    "Barren": 1.7
+  },
+  "reference_label_prevalence_percent": {
+    "Forest": 17.35,
+    "Agriculture": 79.45,
+    "Water": 0.59,
+    "Built-up": 2.4,
+    "Barren": 0.22
+  },
+  "cloud_shadow_masking": "UNAVAILABLE \u2014 no SCL/QA layer provided with the Sentinel-2 bands",
+  "confidence_stats": {
+    "mean_confidence": 0.7832760810852051,
+    "low_confidence_pct": 7.044465022804509,
+    "medium_confidence_pct": 33.14226188925796,
+    "high_confidence_pct": 59.81327308793753,
+    "thresholds": {
+      "low": "<0.5",
+      "medium": "0.5-0.75",
+      "high": ">=0.75"
+    }
+  },
+  "spatial_cleanup": {
+    "n_pixels_changed": 39498,
+    "pct_pixels_changed": 0.3964555281847982,
+    "method": "isolated-pixel-only: reclassify center only if ALL 8 neighbors are valid and unanimously agree on one different class; never touches NoData; does not apply a general mode filter (protects small legitimate features)."
+  },
+  "watershed_coverage": {
+    "total_watersheds": 66,
+    "low_coverage_count": 35,
+    "insufficient_data_count": 1
+  },
+  "class_encoding": {
+    "1": "Forest",
+    "2": "Agriculture",
+    "3": "Water",
+    "4": "Built-up",
+    "5": "Barren"
+  },
+  "sklearn_version": "1.9.0",
+  "python_version": "3.12.3",
+  "generated_at_utc": "2026-08-26T18:16:20.238430+00:00",
+  "important_note": "All evaluation metrics measure agreement with ESA WorldCover 2021 v200 reference labels (a global reference product, ~76.7% independently validated accuracy), NOT field-verified ground truth. Full-scene predicted class percentages should not be read as area estimates without accounting for the known equal-count-sampling class prior distortion documented in outputs/experiment_comparison.json.",
+  "study_area": {
+    "taluk": "Shiggaon",
+    "district": "Haveri",
+    "state": "Karnataka",
+    "country": "India"
+  },
+  "known_limitations": [
+    "Built-up is over-predicted relative to WorldCover reference prevalence.",
+    "Barren is over-predicted relative to WorldCover reference prevalence.",
+    "Agriculture <-> Built-up spectral confusion exists.",
+    "Water <-> Barren confusion exists because of heterogeneous reference labeling.",
+    "36/66 micro-watersheds have LOW or INSUFFICIENT_DATA coverage.",
+    "Only one Sentinel-2 date is currently used.",
+    "No SCL/cloud-shadow masking is available.",
+    "WorldCover is reference/pseudo-ground-truth and is not field-verified."
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "n_features": 18,
+  "feature_order": [
+    "B2_date1",
+    "B3_date1",
+    "B4_date1",
+    "B8_date1",
+    "B11_date1",
+    "NDVI_date1",
+    "NDWI_date1",
+    "NDBI_date1",
+    "BSI_date1",
+    "B2_date2",
+    "B3_date2",
+    "B4_date2",
+    "B8_date2",
+    "B11_date2",
+    "NDVI_date2",
+    "NDWI_date2",
+    "NDBI_date2",
+    "BSI_date2"
+  ],
+  "date1": {
+    "acquisition_date": "UNKNOWN",
+    "tile": "UNKNOWN",
+    "scl_available": false,
+    "note": "Date 1 metadata was never recoverable from the supplied files. UNKNOWN, not inferred."
+  },
+  "date2": {
+    "acquisition_date": "2021-05-01T05:16:49.024Z",
+    "tile": "T43PES",
+    "scl_available": true,
+    "source": "As stated in the uploaded scene_metadata.json \u2014 not independently verifiable against an external catalog from this sandbox (no network access).",
+    "cloud_contamination_pct_study_area": 0.79,
+    "cloud_shadow_contamination_pct_study_area": 0.74,
+    "total_invalid_masked_pct": 2.06
+  },
+  "consistency_verified": "CRS, transform, dimensions confirmed pixel-identical between date1 and date2 (audit check 12: PASS)."
+}

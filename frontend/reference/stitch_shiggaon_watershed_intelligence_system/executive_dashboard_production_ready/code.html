@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Executive Dashboard - Shiggaon Watershed Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "status-missing": "#757575",
+                        "on-secondary-container": "#004c7d",
+                        "primary-fixed-dim": "#91d78a",
+                        "tertiary-fixed": "#ffd9e2",
+                        "surface-container-low": "#eef6e7",
+                        "surface": "#f7fbf1",
+                        "status-suspicious": "#d32f2f",
+                        "surface-container-highest": "#dde5d6",
+                        "tertiary": "#6b1d3d",
+                        "primary": "#1b5e20",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#2a6b2c",
+                        "inverse-surface": "#2b3328",
+                        "on-background": "#161d14",
+                        "status-review": "#ed6c02",
+                        "secondary-container": "#7cbeff",
+                        "surface-container-high": "#e2ebdc",
+                        "on-surface": "#161d14",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f4fced",
+                        "status-inside": "#0288d1",
+                        "on-tertiary-container": "#ffaec6",
+                        "status-outside": "#7b1fa2",
+                        "surface-container": "#e8f1e1",
+                        "on-error": "#ffffff",
+                        "secondary": "#01629e",
+                        "on-primary-fixed": "#002203",
+                        "on-secondary-fixed": "#001d34",
+                        "secondary-fixed-dim": "#9acbff",
+                        "status-valid": "#2e7d32",
+                        "inverse-primary": "#91d78a",
+                        "border-strong": "#717a6d",
+                        "on-tertiary-fixed": "#3e001d",
+                        "inverse-on-surface": "#ebf3e4",
+                        "surface-variant": "#dde5d6",
+                        "on-secondary-fixed-variant": "#004a79",
+                        "background": "#f4fced",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#1b5e20",
+                        "outline-variant": "#c0c9bb",
+                        "on-tertiary-fixed-variant": "#7a2949",
+                        "secondary-fixed": "#cfe5ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#90d689",
+                        "tertiary-container": "#883454",
+                        "border-subtle": "#c0c9bb",
+                        "on-primary-fixed-variant": "#0c5216",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb1c8",
+                        "surface-dim": "#d4ddce",
+                        "on-surface-variant": "#41493e",
+                        "primary-fixed": "#acf4a4",
+                        "outline": "#717a6d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "sm": "0.25rem",
+                        "md": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-w": "60px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "sidebar-expanded": "240px",
+                        "panel-gap": "8px",
+                        "margin-md": "16px",
+                        "margin-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "display": ["Inter", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "headline-sm": ["Inter", "sans-serif"],
+                        "body-sm": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "mono-data": ["JetBrains Mono", "monospace"],
+                        "headline-lg": ["Inter", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"],
+                        "headline-xl": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen w-full overflow-hidden flex flex-col font-body-md text-body-md">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-4 h-14 bg-surface shadow-sm border-b border-border-subtle">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Watershed Decision Support</span>
+</div>
+<div class="flex-1 flex justify-center h-full">
+<nav aria-label="Main Navigation" class="flex gap-8 h-full items-end">
+<a class="h-full flex items-center px-2 pb-1 border-b-2 border-primary text-primary font-label-md text-label-md transition-colors hover:bg-surface-container" href="#">
+                    Dashboard
+                </a>
+<a class="h-full flex items-center px-2 pb-1 border-b-2 border-transparent text-on-surface-variant font-label-md text-label-md transition-colors hover:bg-surface-container hover:text-on-surface" href="#">
+                    GIS Explorer
+                </a>
+<a class="h-full flex items-center px-2 pb-1 border-b-2 border-transparent text-on-surface-variant font-label-md text-label-md transition-colors hover:bg-surface-container hover:text-on-surface" href="#">
+                    Reports
+                </a>
+</nav>
+</div>
+<div class="flex items-center gap-3">
+<select class="bg-surface-container border border-border-subtle rounded-md px-3 py-1.5 text-label-md text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none shadow-sm">
+<option>Global (All MWS)</option>
+<option>MWS-01</option>
+<option>MWS-02</option>
+<option>MWS-03</option>
+</select>
+<button class="px-3 py-1.5 border border-border-subtle rounded-md text-on-surface font-label-md hover:bg-surface-container transition-colors shadow-sm bg-surface">Export Data</button>
+<button class="px-3 py-1.5 bg-primary text-on-primary rounded-md font-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm">Generate Report</button>
+<div class="w-px h-6 bg-border-subtle mx-1"></div>
+<button aria-label="notifications" class="p-1.5 rounded-full hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button aria-label="help" class="p-1.5 rounded-full hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+<button aria-label="account_circle" class="p-1.5 rounded-full hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Layout Container -->
+<div class="flex flex-1 mt-14 w-full h-[calc(100vh-56px)] bg-surface-container-low">
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-14 h-[calc(100vh-56px)] z-40 flex flex-col bg-surface border-r border-border-subtle w-[64px] md:w-sidebar-expanded overflow-y-auto no-scrollbar transition-all duration-200">
+<div class="p-4 border-b border-border-subtle hidden md:block">
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Shiggaon Taluk</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Haveri District</p>
+</div>
+<nav class="flex-1 py-4 flex flex-col gap-1 px-2">
+<a class="flex items-center gap-3 px-3 py-2.5 bg-primary text-on-primary rounded-md font-medium transition-all duration-200" href="#">
+<span class="material-symbols-outlined fill-icon text-[20px]">dashboard</span>
+<span class="font-label-md text-label-md hidden md:block">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant rounded-md hover:bg-surface-container hover:text-on-surface transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">map</span>
+<span class="font-label-md text-label-md hidden md:block">GIS Explorer</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant rounded-md hover:bg-surface-container hover:text-on-surface transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">layers</span>
+<span class="font-label-md text-label-md hidden md:block">LULC Analysis</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant rounded-md hover:bg-surface-container hover:text-on-surface transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">opacity</span>
+<span class="font-label-md text-label-md hidden md:block">Water Quality</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant rounded-md hover:bg-surface-container hover:text-on-surface transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">sensors</span>
+<span class="font-label-md text-label-md hidden md:block">IoT Monitoring</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant rounded-md hover:bg-surface-container hover:text-on-surface transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">image</span>
+<span class="font-label-md text-label-md hidden md:block">Geo-Coded Images</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant rounded-md hover:bg-surface-container hover:text-on-surface transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">qr_code_2</span>
+<span class="font-label-md text-label-md hidden md:block">Watersheds</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant rounded-md hover:bg-surface-container hover:text-on-surface transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">assessment</span>
+<span class="font-label-md text-label-md hidden md:block">Reports</span>
+</a>
+<div class="mt-auto pt-4 border-t border-border-subtle mx-2">
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant rounded-md hover:bg-surface-container hover:text-on-surface transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-label-md text-label-md hidden md:block">Settings</span>
+</a>
+</div>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-[64px] md:ml-sidebar-expanded flex p-gutter gap-gutter h-full bg-surface-container-low overflow-hidden">
+<!-- Center Column: Map Area -->
+<div class="flex-1 flex flex-col h-full rounded-lg border border-border-subtle bg-surface shadow-sm overflow-hidden relative">
+<!-- GIS Toolbar Overlay -->
+<div class="absolute top-4 left-4 z-10 flex flex-col bg-surface border border-border-subtle rounded-md shadow-sm overflow-hidden">
+<button class="p-2 text-on-surface hover:bg-surface-container transition-colors border-b border-border-subtle" title="Zoom In">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+<button class="p-2 text-on-surface hover:bg-surface-container transition-colors border-b border-border-subtle" title="Zoom Out">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<button class="p-2 bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-colors border-b border-border-subtle" title="Pan">
+<span class="material-symbols-outlined text-[18px]">pan_tool</span>
+</button>
+<button class="p-2 text-on-surface hover:bg-surface-container transition-colors" title="Layers">
+<span class="material-symbols-outlined text-[18px]">layers</span>
+</button>
+</div>
+<!-- Map Placeholder -->
+<div class="flex-1 bg-surface-variant relative overflow-hidden" data-location="Shiggaon Taluk">
+<img class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80" data-alt="A highly detailed, professional GIS satellite map view of an agricultural watershed region." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOxlEsCRsmTzPcn2wCJCN6NYmS-IJopXfY9d0xGRe-ekrpETf7cyfTqYl-nsNRzofiu37K9ruAZtH6O7PYSat0j7HlL6gZYr4F5nvuAMhqh0bkYhjcwovA-l8o4SCn2x9lxIvJLFR_Fbu_8HkvV8J2aTihM4q07wOwc2EVVpa8F8a4TWdavJ109UNXqmQ4EV6TeW572UM_8KZ7uHscD4mfnFGumQTFVoyWhoSAjK09RgfDj9yn5nSvdA"/>
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="none" viewbox="0 0 1000 1000">
+<!-- Study Boundary -->
+<path d="M100,200 L400,100 L800,250 L900,600 L600,900 L200,800 Z" fill="none" stroke="#ba1a1a" stroke-dasharray="8,8" stroke-width="4"></path>
+<!-- MWS Boundaries -->
+<path d="M100,200 L400,400 L200,800 Z" fill="none" stroke="#004c7d" stroke-width="2"></path>
+<path d="M400,400 L800,250 L900,600 L500,700 Z" fill="none" stroke="#004c7d" stroke-width="2"></path>
+<path d="M200,800 L400,400 L500,700 L600,900 Z" fill="none" stroke="#004c7d" stroke-width="2"></path>
+<!-- Simulated LULC Patches -->
+<path d="M150,300 L300,350 L250,500 L120,400 Z" fill="#2e7d32" opacity="0.3"></path>
+<path d="M500,350 L700,300 L650,550 L450,450 Z" fill="#2e7d32" opacity="0.3"></path>
+</svg>
+</div>
+<!-- KPI Strip -->
+<div class="bg-surface border-t border-border-subtle p-5 flex gap-8 overflow-x-auto no-scrollbar items-center shrink-0">
+<div class="flex flex-col border-r border-border-subtle pr-8 min-w-max">
+<span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-widest font-semibold mb-1">Micro-Watersheds</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-on-surface tracking-tight">66</span>
+<span class="font-label-sm text-[11px] text-status-valid bg-status-valid/15 px-2 py-0.5 rounded-full font-bold">+2 active</span>
+</div>
+</div>
+<div class="flex flex-col border-r border-border-subtle pr-8 min-w-max">
+<span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-widest font-semibold mb-1">LULC Coverage</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-on-surface tracking-tight">100%</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-full font-bold">verified</span>
+</div>
+</div>
+<div class="flex flex-col border-r border-border-subtle pr-8 min-w-max">
+<span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-widest font-semibold mb-1">Geo-Coded Images</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-on-surface tracking-tight">1,248</span>
+</div>
+</div>
+<div class="flex flex-col min-w-max">
+<span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-widest font-semibold mb-1">Active IoT Stations</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-on-surface tracking-tight">14</span>
+<span class="inline-flex items-center px-2 py-0.5 bg-status-valid/15 rounded-full font-label-sm text-[11px] text-status-valid font-bold tracking-wider">ONLINE</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Details & Alerts -->
+<div class="w-[380px] flex flex-col gap-gutter h-full shrink-0">
+<!-- Overview Panel -->
+<div class="bg-surface border border-border-subtle rounded-lg flex flex-col flex-1 min-h-0 shadow-sm">
+<div class="px-5 py-4 border-b border-border-subtle flex justify-between items-center bg-surface rounded-t-lg">
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface tracking-tight">Watershed Overview</h3>
+<span class="material-symbols-outlined text-[22px] text-on-surface-variant">pie_chart</span>
+</div>
+<div class="p-5 flex-1 overflow-y-auto no-scrollbar">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-5 leading-relaxed">
+                            Distribution of Land Use and Land Cover (LULC) across Shiggaon Taluk.
+                        </p>
+<!-- Metrics (Macro F1 & Mean Conf) -->
+<div class="grid grid-cols-2 gap-3 mb-6 pb-6 border-b border-border-subtle">
+<div class="bg-surface-container-low p-3 rounded-md border border-border-subtle/50 flex flex-col items-center">
+<span class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold mb-1">Macro F1</span>
+<span class="text-lg font-bold text-primary">0.807</span>
+</div>
+<div class="bg-surface-container-low p-3 rounded-md border border-border-subtle/50 flex flex-col items-center">
+<span class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold mb-1">Mean Conf</span>
+<span class="text-lg font-bold text-primary">0.783</span>
+</div>
+</div>
+<!-- LULC Distribution Bars -->
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-end">
+<span class="font-label-md text-sm text-on-surface font-semibold">Agriculture</span>
+<span class="font-mono-data text-xs font-semibold text-on-surface-variant">62.6%</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-status-valid w-[62.6%] rounded-full"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-end">
+<span class="font-label-md text-sm text-on-surface font-semibold">Forest</span>
+<span class="font-mono-data text-xs font-semibold text-on-surface-variant">20.2%</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[20.2%] rounded-full"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-end">
+<span class="font-label-md text-sm text-on-surface font-semibold">Built-up</span>
+<span class="font-mono-data text-xs font-semibold text-on-surface-variant">14.8%</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-status-missing w-[14.8%] rounded-full"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-end">
+<span class="font-label-md text-sm text-on-surface font-semibold">Barren</span>
+<span class="font-mono-data text-xs font-semibold text-on-surface-variant">1.7%</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-status-review w-[1.7%] rounded-full"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-end">
+<span class="font-label-md text-sm text-on-surface font-semibold">Water</span>
+<span class="font-mono-data text-xs font-semibold text-on-surface-variant">0.7%</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-status-inside w-[0.7%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Alerts Panel -->
+<div class="bg-surface border border-border-subtle rounded-lg flex flex-col h-[55%] min-h-[360px] shadow-sm">
+<div class="px-5 py-4 border-b border-border-subtle flex justify-between items-center bg-surface rounded-t-lg">
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface tracking-tight">Recent Alerts</h3>
+<span class="inline-flex items-center justify-center bg-error text-on-error font-label-sm text-[11px] px-2.5 py-1 rounded-full font-bold tracking-widest shadow-sm">3 NEW</span>
+</div>
+<div class="flex-1 overflow-y-auto no-scrollbar p-4 flex flex-col gap-3">
+<!-- Critical Alert -->
+<div class="p-4 border border-error-container rounded-md hover:bg-error-container/10 transition-colors cursor-pointer border-l-[6px] border-l-error bg-surface shadow-sm">
+<div class="flex justify-between items-start mb-1.5">
+<span class="font-label-md text-base text-on-surface font-bold tracking-tight">Water Quality Deterioration</span>
+<span class="font-body-sm text-xs text-on-surface-variant font-medium">10:42 AM</span>
+</div>
+<p class="font-body-sm text-sm text-on-surface-variant mb-3 leading-relaxed">Station 04 indicating high turbidity levels.</p>
+<div class="p-3 bg-error-container/30 rounded-md flex flex-col gap-1.5 border border-error-container/50">
+<span class="font-label-sm text-[11px] uppercase font-bold tracking-widest text-error">Recommended Action</span>
+<span class="font-body-sm text-sm font-semibold text-error">Deploy field agent to Station 04</span>
+</div>
+<div class="mt-3.5 flex gap-2 justify-between items-center">
+<span class="inline-flex items-center px-2.5 py-1 bg-error/15 rounded-md font-label-sm text-[11px] text-error font-bold tracking-wider">PRIORITY 1</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant text-[10px] uppercase font-semibold">ID: WQ-04-A</span>
+</div>
+</div>
+<!-- Warning Alert -->
+<div class="p-4 border border-status-review/30 rounded-md hover:bg-status-review/5 transition-colors cursor-pointer border-l-[6px] border-l-status-review bg-surface shadow-sm">
+<div class="flex justify-between items-start mb-1.5">
+<span class="font-label-md text-base text-on-surface font-bold tracking-tight">LULC Confidence Alert</span>
+<span class="font-body-sm text-xs text-on-surface-variant font-medium">Yesterday</span>
+</div>
+<p class="font-body-sm text-sm text-on-surface-variant mb-3 leading-relaxed">Recent model run shows uncertainty in MWS-22.</p>
+<div class="p-3 bg-status-review/10 rounded-md flex flex-col gap-1.5 border border-status-review/20">
+<span class="font-label-sm text-[11px] uppercase font-bold tracking-widest text-status-review">Recommended Action</span>
+<span class="font-body-sm text-sm font-semibold text-status-review">Review low-confidence LULC in MWS-22</span>
+</div>
+<div class="mt-3.5 flex gap-2">
+<span class="inline-flex items-center px-2.5 py-1 bg-status-review/15 rounded-md font-label-sm text-[11px] text-status-review font-bold tracking-wider">REVIEW</span>
+</div>
+</div>
+<!-- Good Alert -->
+<div class="p-4 border border-status-valid/30 rounded-md hover:bg-status-valid/5 transition-colors cursor-pointer border-l-[6px] border-l-status-valid bg-surface shadow-sm">
+<div class="flex justify-between items-start mb-1.5">
+<span class="font-label-md text-base text-on-surface font-bold tracking-tight">New Geo-Images Processed</span>
+<span class="font-body-sm text-xs text-on-surface-variant font-medium">Nov 12</span>
+</div>
+<p class="font-body-sm text-sm text-on-surface-variant leading-relaxed">Batch #402 successfully integrated into LULC.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

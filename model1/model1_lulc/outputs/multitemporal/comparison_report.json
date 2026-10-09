@@ -1,0 +1,484 @@
+{
+  "baseline_experiment_B": {
+    "accuracy": 0.8050847457627118,
+    "macro_f1": 0.8066420789180924,
+    "weighted_f1": 0.8072771680223646,
+    "per_class": {
+      "Forest": {
+        "precision": 0.9306784660766961,
+        "recall": 0.8912429378531074,
+        "f1": 0.9105339105339105,
+        "support": 708
+      },
+      "Agriculture": {
+        "precision": 0.7237008871989861,
+        "recall": 0.7875862068965517,
+        "f1": 0.7542932628797886,
+        "support": 725
+      },
+      "Water": {
+        "precision": 0.9183431952662722,
+        "recall": 0.7838383838383839,
+        "f1": 0.8457765667574932,
+        "support": 990
+      },
+      "Built-up": {
+        "precision": 0.7691373025516404,
+        "recall": 0.7599039615846338,
+        "f1": 0.7644927536231884,
+        "support": 833
+      },
+      "Barren": {
+        "precision": 0.7058152793614595,
+        "recall": 0.8187830687830688,
+        "f1": 0.7581139007960809,
+        "support": 756
+      }
+    }
+  },
+  "date2_drop_info": {
+    "n_baseline_rows": 15000,
+    "n_dropped_date2_invalid": 1560,
+    "pct_dropped": 10.4
+  },
+  "multitemporal_experiments": [
+    {
+      "experiment": "T0_baseline_reproduction",
+      "n_features": 9,
+      "feature_columns": [
+        "B2_date1",
+        "B3_date1",
+        "B4_date1",
+        "B8_date1",
+        "B11_date1",
+        "NDVI_date1",
+        "NDWI_date1",
+        "NDBI_date1",
+        "BSI_date1"
+      ],
+      "n_train": 10988,
+      "n_test": 4012,
+      "accuracy": 0.8050847457627118,
+      "macro_f1": 0.8066420789180924,
+      "weighted_f1": 0.8072771680223646,
+      "per_class": {
+        "Forest": {
+          "precision": 0.9306784660766961,
+          "recall": 0.8912429378531074,
+          "f1": 0.9105339105339105,
+          "support": 708
+        },
+        "Agriculture": {
+          "precision": 0.7237008871989861,
+          "recall": 0.7875862068965517,
+          "f1": 0.7542932628797886,
+          "support": 725
+        },
+        "Water": {
+          "precision": 0.9183431952662722,
+          "recall": 0.7838383838383839,
+          "f1": 0.8457765667574932,
+          "support": 990
+        },
+        "Built-up": {
+          "precision": 0.7691373025516404,
+          "recall": 0.7599039615846338,
+          "f1": 0.7644927536231884,
+          "support": 833
+        },
+        "Barren": {
+          "precision": 0.7058152793614595,
+          "recall": 0.8187830687830688,
+          "f1": 0.7581139007960809,
+          "support": 756
+        }
+      },
+      "confusion_matrix": [
+        [
+          631,
+          59,
+          0,
+          15,
+          3
+        ],
+        [
+          25,
+          571,
+          0,
+          118,
+          11
+        ],
+        [
+          7,
+          5,
+          776,
+          2,
+          200
+        ],
+        [
+          14,
+          142,
+          0,
+          633,
+          44
+        ],
+        [
+          1,
+          12,
+          69,
+          55,
+          619
+        ]
+      ],
+      "confusion_matrix_class_order": [
+        "Forest",
+        "Agriculture",
+        "Water",
+        "Built-up",
+        "Barren"
+      ],
+      "agriculture_to_builtup": 118,
+      "builtup_to_agriculture": 142,
+      "agriculture_builtup_total_cross_confusion": 260,
+      "water_to_barren": 200,
+      "barren_to_water": 69,
+      "water_barren_total_cross_confusion": 269,
+      "elapsed_seconds": 5.8
+    },
+    {
+      "experiment": "T1_two_date_raw_bands",
+      "n_features": 10,
+      "feature_columns": [
+        "B2_date1",
+        "B3_date1",
+        "B4_date1",
+        "B8_date1",
+        "B11_date1",
+        "B2_date2",
+        "B3_date2",
+        "B4_date2",
+        "B8_date2",
+        "B11_date2"
+      ],
+      "n_train": 9824,
+      "n_test": 3616,
+      "accuracy": 0.8548119469026548,
+      "macro_f1": 0.8525387357757703,
+      "weighted_f1": 0.855196285545186,
+      "per_class": {
+        "Forest": {
+          "precision": 0.9512555391432792,
+          "recall": 0.9279538904899135,
+          "f1": 0.9394602479941648,
+          "support": 694
+        },
+        "Agriculture": {
+          "precision": 0.857335127860027,
+          "recall": 0.8921568627450981,
+          "f1": 0.8743994509265615,
+          "support": 714
+        },
+        "Water": {
+          "precision": 0.896505376344086,
+          "recall": 0.8285714285714286,
+          "f1": 0.8612007746933505,
+          "support": 805
+        },
+        "Built-up": {
+          "precision": 0.8286755771567437,
+          "recall": 0.8687898089171975,
+          "f1": 0.8482587064676617,
+          "support": 785
+        },
+        "Barren": {
+          "precision": 0.7329093799682035,
+          "recall": 0.7459546925566343,
+          "f1": 0.739374498797113,
+          "support": 618
+        }
+      },
+      "confusion_matrix": [
+        [
+          644,
+          29,
+          0,
+          17,
+          4
+        ],
+        [
+          15,
+          637,
+          0,
+          53,
+          9
+        ],
+        [
+          1,
+          8,
+          667,
+          1,
+          128
+        ],
+        [
+          17,
+          59,
+          0,
+          682,
+          27
+        ],
+        [
+          0,
+          10,
+          77,
+          70,
+          461
+        ]
+      ],
+      "confusion_matrix_class_order": [
+        "Forest",
+        "Agriculture",
+        "Water",
+        "Built-up",
+        "Barren"
+      ],
+      "agriculture_to_builtup": 53,
+      "builtup_to_agriculture": 59,
+      "agriculture_builtup_total_cross_confusion": 112,
+      "water_to_barren": 128,
+      "barren_to_water": 77,
+      "water_barren_total_cross_confusion": 205,
+      "elapsed_seconds": 4.0
+    },
+    {
+      "experiment": "T2_two_date_raw_plus_indices",
+      "n_features": 18,
+      "feature_columns": [
+        "B2_date1",
+        "B3_date1",
+        "B4_date1",
+        "B8_date1",
+        "B11_date1",
+        "NDVI_date1",
+        "NDWI_date1",
+        "NDBI_date1",
+        "BSI_date1",
+        "B2_date2",
+        "B3_date2",
+        "B4_date2",
+        "B8_date2",
+        "B11_date2",
+        "NDVI_date2",
+        "NDWI_date2",
+        "NDBI_date2",
+        "BSI_date2"
+      ],
+      "n_train": 9824,
+      "n_test": 3616,
+      "accuracy": 0.865320796460177,
+      "macro_f1": 0.8633290330166543,
+      "weighted_f1": 0.8656952000687518,
+      "per_class": {
+        "Forest": {
+          "precision": 0.9530102790014684,
+          "recall": 0.9351585014409222,
+          "f1": 0.944,
+          "support": 694
+        },
+        "Agriculture": {
+          "precision": 0.8865546218487395,
+          "recall": 0.8865546218487395,
+          "f1": 0.8865546218487395,
+          "support": 714
+        },
+        "Water": {
+          "precision": 0.8924302788844621,
+          "recall": 0.8347826086956521,
+          "f1": 0.8626444159178434,
+          "support": 805
+        },
+        "Built-up": {
+          "precision": 0.8403361344537815,
+          "recall": 0.89171974522293,
+          "f1": 0.865265760197775,
+          "support": 785
+        },
+        "Barren": {
+          "precision": 0.7480314960629921,
+          "recall": 0.7686084142394822,
+          "f1": 0.7581803671189146,
+          "support": 618
+        }
+      },
+      "confusion_matrix": [
+        [
+          649,
+          24,
+          1,
+          18,
+          2
+        ],
+        [
+          17,
+          633,
+          0,
+          57,
+          7
+        ],
+        [
+          2,
+          7,
+          672,
+          1,
+          123
+        ],
+        [
+          13,
+          44,
+          0,
+          700,
+          28
+        ],
+        [
+          0,
+          6,
+          80,
+          57,
+          475
+        ]
+      ],
+      "confusion_matrix_class_order": [
+        "Forest",
+        "Agriculture",
+        "Water",
+        "Built-up",
+        "Barren"
+      ],
+      "agriculture_to_builtup": 57,
+      "builtup_to_agriculture": 44,
+      "agriculture_builtup_total_cross_confusion": 101,
+      "water_to_barren": 123,
+      "barren_to_water": 80,
+      "water_barren_total_cross_confusion": 203,
+      "elapsed_seconds": 5.4
+    },
+    {
+      "experiment": "T3_plus_temporal_diff_stats",
+      "n_features": 25,
+      "feature_columns": [
+        "B2_date1",
+        "B3_date1",
+        "B4_date1",
+        "B8_date1",
+        "B11_date1",
+        "NDVI_date1",
+        "NDWI_date1",
+        "NDBI_date1",
+        "BSI_date1",
+        "B2_date2",
+        "B3_date2",
+        "B4_date2",
+        "B8_date2",
+        "B11_date2",
+        "NDVI_date2",
+        "NDWI_date2",
+        "NDBI_date2",
+        "BSI_date2",
+        "NDVI_difference",
+        "NDVI_absolute_difference",
+        "NDVI_mean",
+        "NDVI_std",
+        "NDWI_difference",
+        "NDBI_difference",
+        "BSI_difference"
+      ],
+      "n_train": 9824,
+      "n_test": 3616,
+      "accuracy": 0.8644911504424779,
+      "macro_f1": 0.8621809543318305,
+      "weighted_f1": 0.8646767980122537,
+      "per_class": {
+        "Forest": {
+          "precision": 0.945906432748538,
+          "recall": 0.9322766570605188,
+          "f1": 0.9390420899854862,
+          "support": 694
+        },
+        "Agriculture": {
+          "precision": 0.8817802503477051,
+          "recall": 0.8879551820728291,
+          "f1": 0.8848569434752268,
+          "support": 714
+        },
+        "Water": {
+          "precision": 0.8902116402116402,
+          "recall": 0.8360248447204969,
+          "f1": 0.8622677770659833,
+          "support": 805
+        },
+        "Built-up": {
+          "precision": 0.844578313253012,
+          "recall": 0.8929936305732484,
+          "f1": 0.8681114551083592,
+          "support": 785
+        },
+        "Barren": {
+          "precision": 0.7511961722488039,
+          "recall": 0.7621359223300971,
+          "f1": 0.7566265060240964,
+          "support": 618
+        }
+      },
+      "confusion_matrix": [
+        [
+          647,
+          29,
+          0,
+          16,
+          2
+        ],
+        [
+          21,
+          634,
+          0,
+          52,
+          7
+        ],
+        [
+          2,
+          5,
+          673,
+          4,
+          121
+        ],
+        [
+          14,
+          44,
+          0,
+          701,
+          26
+        ],
+        [
+          0,
+          7,
+          83,
+          57,
+          471
+        ]
+      ],
+      "confusion_matrix_class_order": [
+        "Forest",
+        "Agriculture",
+        "Water",
+        "Built-up",
+        "Barren"
+      ],
+      "agriculture_to_builtup": 52,
+      "builtup_to_agriculture": 44,
+      "agriculture_builtup_total_cross_confusion": 96,
+      "water_to_barren": 121,
+      "barren_to_water": 83,
+      "water_barren_total_cross_confusion": 204,
+      "elapsed_seconds": 6.9
+    }
+  ]
+}

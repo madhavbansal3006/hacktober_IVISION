@@ -1,0 +1,8 @@
+{
+  "source": "user-provided pre-processed local GeoTIFFs (no STAC query performed)",
+  "scene_id": "UNKNOWN",
+  "datetime": "UNKNOWN",
+  "cloud_cover_scene_pct": "UNKNOWN",
+  "scl_cloud_mask_applied": false,
+  "pct_good_pixels_nodata_mask_only": 58.57488400328342
+}

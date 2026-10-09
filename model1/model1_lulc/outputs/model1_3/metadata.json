@@ -1,0 +1,138 @@
+{
+  "model": "RandomForestClassifier",
+  "candidate_id": "model1_3_multitemporal_t2",
+  "status": "CANDIDATE \u2014 not yet promoted to production",
+  "hyperparameters": {
+    "n_estimators": 200,
+    "class_weight": null,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "n_features": 18,
+  "class_encoding": {
+    "1": "Forest",
+    "2": "Agriculture",
+    "3": "Water",
+    "4": "Built-up",
+    "5": "Barren"
+  },
+  "n_training_samples": 9824,
+  "evaluation_metrics": {
+    "accuracy": 0.865320796460177,
+    "macro_f1": 0.8633290330166543,
+    "weighted_f1": 0.8656952000687518,
+    "per_class": {
+      "Forest": {
+        "precision": 0.9530102790014684,
+        "recall": 0.9351585014409222,
+        "f1": 0.944,
+        "support": 694
+      },
+      "Agriculture": {
+        "precision": 0.8865546218487395,
+        "recall": 0.8865546218487395,
+        "f1": 0.8865546218487395,
+        "support": 714
+      },
+      "Water": {
+        "precision": 0.8924302788844621,
+        "recall": 0.8347826086956521,
+        "f1": 0.8626444159178434,
+        "support": 805
+      },
+      "Built-up": {
+        "precision": 0.8403361344537815,
+        "recall": 0.89171974522293,
+        "f1": 0.865265760197775,
+        "support": 785
+      },
+      "Barren": {
+        "precision": 0.7480314960629921,
+        "recall": 0.7686084142394822,
+        "f1": 0.7581803671189146,
+        "support": 618
+      }
+    },
+    "confusion_matrix": [
+      [
+        649,
+        24,
+        1,
+        18,
+        2
+      ],
+      [
+        17,
+        633,
+        0,
+        57,
+        7
+      ],
+      [
+        2,
+        7,
+        672,
+        1,
+        123
+      ],
+      [
+        13,
+        44,
+        0,
+        700,
+        28
+      ],
+      [
+        0,
+        6,
+        80,
+        57,
+        475
+      ]
+    ],
+    "confusion_matrix_class_order": [
+      "Forest",
+      "Agriculture",
+      "Water",
+      "Built-up",
+      "Barren"
+    ]
+  },
+  "date1_metadata": {
+    "acquisition_date": "UNKNOWN",
+    "tile": "UNKNOWN",
+    "scl_available": false,
+    "note": "Date 1 metadata was never recoverable from the supplied files. UNKNOWN, not inferred."
+  },
+  "date2_metadata": {
+    "acquisition_date": "2021-05-01T05:16:49.024Z",
+    "tile": "T43PES",
+    "scl_available": true,
+    "source": "As stated in the uploaded scene_metadata.json \u2014 not independently verifiable against an external catalog from this sandbox (no network access).",
+    "cloud_contamination_pct_study_area": 0.79,
+    "cloud_shadow_contamination_pct_study_area": 0.74,
+    "total_invalid_masked_pct": 2.06
+  },
+  "confidence_stats": {
+    "mean_confidence": 0.8554744720458984,
+    "low_confidence_pct": 6.019365188014286,
+    "medium_confidence_pct": 19.3396771138878,
+    "high_confidence_pct": 74.64095769809792,
+    "thresholds": {
+      "low": "<0.5",
+      "medium": "0.5-0.75",
+      "high": ">=0.75"
+    }
+  },
+  "full_scene_domain_pct_of_raster": 57.37,
+  "reference_labels": "ESA WorldCover 2021 v200 \u2014 pseudo-ground-truth/reference, NOT field-verified ground truth.",
+  "known_limitations_unchanged": [
+    "Built-up and Barren remain elevated relative to WorldCover reference prevalence in full-scene prediction, though substantially reduced vs baseline (see comparison_with_model1_baseline.json).",
+    "Water<->Barren confusion is reduced but not resolved (203 vs baseline 269).",
+    "WorldCover remains reference/pseudo-ground-truth, not field-verified.",
+    "This result is NOT '100% accurate' or 'field validated' \u2014 it measures agreement with a reference label product on a spatially-held-out test set.",
+    "Date 1 acquisition metadata remains UNKNOWN."
+  ],
+  "generated_at_utc": "2026-08-29T07:08:08.589489+00:00",
+  "sklearn_version": "1.9.0"
+}

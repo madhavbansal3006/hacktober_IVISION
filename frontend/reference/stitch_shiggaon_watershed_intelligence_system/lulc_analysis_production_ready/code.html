@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Watershed Decision Support - LULC Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-tertiary-container": "#ffaec6",
+                "on-secondary": "#ffffff",
+                "surface-container-low": "#eef6e7",
+                "tertiary": "#6b1d3d",
+                "border-strong": "#717a6d",
+                "status-review": "#ed6c02",
+                "outline": "#717a6d",
+                "surface-tint": "#2a6b2c",
+                "status-valid": "#2e7d32",
+                "on-primary-fixed": "#002203",
+                "on-tertiary-fixed": "#3e001d",
+                "status-inside": "#0288d1",
+                "border-subtle": "#c0c9bb",
+                "surface-container": "#e8f1e1",
+                "surface-variant": "#dde5d6",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "primary-container": "#1b5e20",
+                "secondary": "#01629e",
+                "on-secondary-container": "#004c7d",
+                "outline-variant": "#c0c9bb",
+                "primary-fixed-dim": "#91d78a",
+                "status-outside": "#7b1fa2",
+                "tertiary-container": "#883454",
+                "inverse-surface": "#2b3328",
+                "error-container": "#ffdad6",
+                "inverse-on-surface": "#ebf3e4",
+                "on-secondary-fixed-variant": "#004a79",
+                "surface-dim": "#d4ddce",
+                "tertiary-fixed": "#ffd9e2",
+                "on-primary-container": "#90d689",
+                "on-primary-fixed-variant": "#0c5216",
+                "secondary-fixed-dim": "#9acbff",
+                "on-tertiary-fixed-variant": "#7a2949",
+                "primary-fixed": "#acf4a4",
+                "on-surface-variant": "#41493e",
+                "on-secondary-fixed": "#001d34",
+                "on-primary": "#ffffff",
+                "status-missing": "#757575",
+                "tertiary-fixed-dim": "#ffb1c8",
+                "primary": "#00450d",
+                "on-surface": "#161d14",
+                "on-tertiary": "#ffffff",
+                "secondary-fixed": "#cfe5ff",
+                "surface": "#f7fbf1",
+                "inverse-primary": "#91d78a",
+                "on-error-container": "#93000a",
+                "secondary-container": "#7cbeff",
+                "surface-container-high": "#e2ebdc",
+                "surface-container-highest": "#dde5d6",
+                "on-background": "#161d14",
+                "on-error": "#ffffff",
+                "surface-bright": "#f4fced",
+                "status-suspicious": "#d32f2f",
+                "background": "#f4fced"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "margin-md": "16px",
+                "gutter": "12px",
+                "panel-gap": "4px",
+                "unit": "4px",
+                "margin-sm": "8px",
+                "sidebar-w": "60px",
+                "sidebar-expanded": "240px"
+        },
+        "fontFamily": {
+                "mono-data": [
+                        "jetbrainsMono"
+                ],
+                "headline-lg": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "display": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "body-sm": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "Inter"
+                ],
+                "label-md": [
+                        "Inter"
+                ],
+                "headline-sm": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "mono-data": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "22px",
+                        {
+                                "lineHeight": "28px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display": [
+                        "30px",
+                        {
+                                "lineHeight": "36px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "15px",
+                        {
+                                "lineHeight": "22px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "18px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-sm": [
+                        "10px",
+                        {
+                                "lineHeight": "12px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-md": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-mono-data { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Rigid grid specific utilities */
+        .panel-container {
+            display: grid;
+            gap: 4px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full z-40 flex flex-col pt-12 border-r border-subtle dark:border-border-subtle bg-surface-container dark:bg-surface-container docked left-0 h-screen w-sidebar-expanded hidden md:flex">
+<div class="px-margin-md pb-margin-md mb-margin-md border-b border-subtle mt-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary shrink-0">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A highly detailed professional avatar photograph of a user profile in a sleek corporate environment. Bright, even lighting. Minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0ycTPPBKcbXNp3nHCVP-NtoNACKsI6p67DB_-QJPL9PZ0QW5rkATCPkjEf5iX1mVlCx1Q2NDIEhLAIaQSmDfuKy2grph5ZMeigafUZ1fP9hWDs1Q4AHa1XfemvZkC1rdid4jA54OOmMozz6pL9H6WMdlHdWiSnakak3Hayjb_HaS6uLIf0Kxe3mkMXKidjAL-Pau8z8CFY9L9tf2afjvEFiEU9NgSWu42pqkpIIvWVs5OXAEEWLcihQ"/>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">Shiggaon Taluk</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Haveri District</p>
+</div>
+</div>
+</div>
+<!-- Global MWS Selector -->
+<div class="px-margin-md mb-4">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider" for="mws-select">Micro-Watershed</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border border-strong rounded-DEFAULT px-3 py-2 font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-shadow duration-200" id="mws-select">
+<option value="all">All Micro-Watersheds</option>
+<option value="mws_104">MWS_104</option>
+<option value="mws_105">MWS_105</option>
+<option value="mws_108">MWS_108</option>
+<option value="mws_112">MWS_112</option>
+<option value="mws_115">MWS_115</option>
+<option value="mws_116">MWS_116</option>
+<option value="mws_119">MWS_119</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<ul class="flex flex-col gap-1 px-unit">
+<li>
+<a class="flex items-center gap-3 px-margin-md py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-md py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]">map</span>
+<span>GIS Explorer</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-md py-2 rounded-DEFAULT bg-primary-container text-on-primary-container font-semibold border-l-4 border-primary transition-all duration-200 ease-in-out font-label-md text-label-md shadow-sm" href="#">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">layers</span>
+<span>LULC Analysis</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-md py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]">opacity</span>
+<span>Water Quality</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-md py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]">sensors</span>
+<span>IoT Monitoring</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-md py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]">image</span>
+<span>Geo-Coded Images</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-md py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+<span>Watersheds</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-md py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]">assessment</span>
+<span>Reports</span>
+</a>
+</li>
+<li class="mt-auto mb-margin-md">
+<a class="flex items-center gap-3 px-margin-md py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-[240px] flex flex-col h-full bg-background relative pt-12">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-md h-12 border-b border-subtle dark:border-border-subtle bg-surface dark:bg-surface flat no shadows transition-colors duration-150 ease-in-out">
+<div class="flex items-center gap-margin-md md:pl-[240px]">
+<h1 class="font-headline-md text-headline-md font-extrabold text-primary dark:text-primary-fixed uppercase tracking-tight">Watershed Decision Support</h1>
+</div>
+<div class="flex items-center gap-2">
+<div class="hidden md:flex items-center border border-strong rounded-DEFAULT px-2 h-8 bg-surface-container-lowest focus-within:ring-1 focus-within:ring-primary focus-within:border-primary transition-all">
+<span class="material-symbols-outlined text-outline text-[16px] mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm font-body-sm w-48 text-on-surface outline-none" placeholder="Search parameters..." type="text"/>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-150 text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-150 text-on-surface-variant">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-150 text-on-surface-variant">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- GIS Viewport & Panels Layout -->
+<div class="flex-1 flex p-panel-gap gap-panel-gap overflow-hidden relative">
+<!-- Map Container -->
+<div class="flex-1 bg-surface-container-lowest border border-subtle rounded-DEFAULT relative overflow-hidden flex flex-col shadow-sm">
+<!-- GIS Toolbar -->
+<div class="absolute top-margin-sm right-margin-sm z-10 flex flex-col gap-[1px] bg-outline rounded-DEFAULT overflow-hidden shadow-sm border border-strong">
+<button class="w-8 h-8 bg-surface-container-lowest flex items-center justify-center hover:bg-surface-container transition-colors group">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-primary">zoom_in</span>
+</button>
+<button class="w-8 h-8 bg-surface-container-lowest flex items-center justify-center hover:bg-surface-container transition-colors group">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-primary">zoom_out</span>
+</button>
+<button class="w-8 h-8 bg-surface-container-lowest flex items-center justify-center hover:bg-surface-container transition-colors group">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-primary">my_location</span>
+</button>
+<button class="w-8 h-8 bg-primary flex items-center justify-center transition-colors shadow-inner">
+<span class="material-symbols-outlined text-[18px] text-on-primary">layers</span>
+</button>
+</div>
+<!-- LULC Legend overlay -->
+<div class="absolute bottom-margin-md left-margin-md z-10 bg-surface-container/95 backdrop-blur-sm border border-subtle rounded-DEFAULT p-3 w-48 shadow-md">
+<h4 class="font-label-sm text-label-sm text-on-surface border-b border-subtle pb-1.5 mb-2 uppercase tracking-wider font-bold">LULC Classes</h4>
+<ul class="flex flex-col gap-2">
+<li class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-3 h-3 block border border-outline/50 rounded-sm shadow-sm" style="background-color: #2e7d32;"></span> Forest
+                        </li>
+<li class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-3 h-3 block border border-outline/50 rounded-sm shadow-sm" style="background-color: #ed6c02;"></span> Agriculture
+                        </li>
+<li class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-3 h-3 block border border-outline/50 rounded-sm shadow-sm" style="background-color: #0288d1;"></span> Water
+                        </li>
+<li class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-3 h-3 block border border-outline/50 rounded-sm shadow-sm" style="background-color: #d32f2f;"></span> Built-up
+                        </li>
+<li class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-3 h-3 block border border-outline/50 rounded-sm shadow-sm" style="background-color: #757575;"></span> Barren
+                        </li>
+</ul>
+</div>
+<!-- Map Placeholder -->
+<div class="w-full h-full bg-surface-dim relative">
+<img alt="LULC Map" class="w-full h-full object-cover mix-blend-multiply opacity-80" data-alt="A high-resolution satellite imagery map of Shiggaon Taluk displaying false-color land use and land cover classifications. Crisp vectors outline agricultural plots, water bodies, and forested areas. Technical, research-grade, minimal aesthetic." data-location="Shiggaon Taluk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk2Ud9Rfv6DRiBr0sxGEu_Z_q5WSjTA09R5aa5eBCrpXboTNZOPQiokUafSLtb3nVfFYaVeMBMtu91wweTp0LTD0AmTOj0y_7GyqAu-EiLkIcQggn-1wwV_Hg8nIqLji_QXoFnsZBxOKwiZXQPQgNasLH1cdTPW9RyGp6W2bcL8lVXpjgXZgJ5e8SljbxQbBmcNrPWa1TOo4tu4sVBfIeJWnEh-uFeYsK0HqGEHkCSlwHbkDQwBj8ayA"/>
+<!-- Simulated Map Grid -->
+<div class="absolute inset-0 border-[0.5px] border-outline-variant/30" style="background-image: linear-gradient(to right, rgba(192, 201, 187, 0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(192, 201, 187, 0.2) 1px, transparent 1px); background-size: 50px 50px;"></div>
+</div>
+</div>
+<!-- Right Panel (Metrics & Details) - Fixed Width -->
+<div class="w-[340px] shrink-0 flex flex-col gap-panel-gap h-full overflow-y-auto hidden lg:flex pb-2">
+<!-- Metrics Card -->
+<div class="bg-surface-container border border-subtle rounded-DEFAULT flex flex-col overflow-hidden shadow-sm">
+<div class="border-b border-subtle px-3 py-2.5 flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Model Performance</h3>
+<span class="font-label-sm text-label-sm text-primary px-2 py-0.5 bg-primary-container/20 border border-primary/50 rounded-sm shadow-sm">RF_v2.4</span>
+</div>
+<div class="p-3 grid grid-cols-2 gap-3 bg-surface-container">
+<div class="bg-surface-container-lowest border border-subtle p-3.5 rounded-DEFAULT flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-1.5 font-bold">Macro F1</p>
+<p class="font-display text-display text-primary font-mono-data font-extrabold tracking-tight">0.807</p>
+</div>
+<div class="bg-surface-container-lowest border border-subtle p-3.5 rounded-DEFAULT flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-1.5 font-bold">Mean Conf</p>
+<p class="font-display text-display text-secondary font-mono-data font-extrabold tracking-tight">0.783</p>
+</div>
+</div>
+</div>
+<!-- Confidence Distribution -->
+<div class="bg-surface-container border border-subtle rounded-DEFAULT flex flex-col overflow-hidden shadow-sm">
+<div class="border-b border-subtle px-3 py-2.5 bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Confidence Distribution</h3>
+</div>
+<div class="p-4 bg-surface-container">
+<div class="flex flex-col gap-3.5">
+<!-- High -->
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-on-surface-variant w-10 font-semibold">High</span>
+<div class="flex-1 h-2 bg-surface-variant overflow-hidden rounded-full shadow-inner">
+<div class="h-full bg-status-valid rounded-full" style="width: 59.8%"></div>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface w-14 text-right font-medium">59.8%</span>
+</div>
+<!-- Medium -->
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-on-surface-variant w-10 font-semibold">Med</span>
+<div class="flex-1 h-2 bg-surface-variant overflow-hidden rounded-full shadow-inner">
+<div class="h-full bg-status-review rounded-full" style="width: 33.1%"></div>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface w-14 text-right font-medium">33.1%</span>
+</div>
+<!-- Low -->
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-on-surface-variant w-10 font-semibold">Low</span>
+<div class="flex-1 h-2 bg-surface-variant overflow-hidden rounded-full shadow-inner">
+<div class="h-full bg-status-suspicious rounded-full" style="width: 7.0%"></div>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface w-14 text-right font-medium">7.0%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Total LULC Stats -->
+<div class="bg-surface-container border border-subtle rounded-DEFAULT flex flex-col overflow-hidden shadow-sm">
+<div class="border-b border-subtle px-3 py-2.5 bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Overall LULC Distribution</h3>
+</div>
+<div class="p-4 bg-surface-container grid grid-cols-2 gap-x-4 gap-y-4.5">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2.5 h-2.5 rounded-full bg-[#ed6c02] shadow-sm"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Agriculture</span>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface font-bold text-[14px]">62.6%</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2.5 h-2.5 rounded-full bg-[#2e7d32] shadow-sm"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Forest</span>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface font-bold text-[14px]">20.2%</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2.5 h-2.5 rounded-full bg-[#d32f2f] shadow-sm"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Built-up</span>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface font-bold text-[14px]">14.8%</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2.5 h-2.5 rounded-full bg-[#757575] shadow-sm"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Barren</span>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface font-bold text-[14px]">1.7%</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2.5 h-2.5 rounded-full bg-[#0288d1] shadow-sm"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Water</span>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface font-bold text-[14px]">0.7%</span>
+</div>
+</div>
+</div>
+<!-- Comparison Table -->
+<div class="bg-surface-container border border-subtle rounded-DEFAULT flex flex-col flex-1 overflow-hidden min-h-[200px] shadow-sm">
+<div class="border-b border-subtle px-3 py-2.5 bg-surface-container-low flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">MWS Analysis</h3>
+<span class="material-symbols-outlined text-outline text-[18px] cursor-pointer hover:text-primary transition-colors">filter_list</span>
+</div>
+<div class="flex-1 overflow-auto bg-surface-container-lowest">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container border-b border-subtle z-10 shadow-sm">
+<tr>
+<th class="font-label-sm text-label-sm text-on-surface-variant px-3 py-3 font-semibold uppercase tracking-wider">ID</th>
+<th class="font-label-sm text-label-sm text-on-surface-variant px-3 py-3 font-semibold uppercase tracking-wider">Dom Class</th>
+<th class="font-label-sm text-label-sm text-on-surface-variant px-3 py-3 font-semibold uppercase tracking-wider text-right">Conf</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-subtle">
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="font-mono-data text-mono-data text-on-surface px-3 py-3 font-medium">MWS_104</td>
+<td class="font-body-sm text-body-sm text-on-surface-variant px-3 py-3 flex items-center gap-2"><span class="w-2.5 h-2.5 inline-block bg-[#ed6c02] rounded-sm shadow-sm"></span> Agri (62%)</td>
+<td class="font-mono-data text-mono-data text-status-valid px-3 py-3 text-right font-semibold">0.89</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="font-mono-data text-mono-data text-on-surface px-3 py-3 font-medium">MWS_105</td>
+<td class="font-body-sm text-body-sm text-on-surface-variant px-3 py-3 flex items-center gap-2"><span class="w-2.5 h-2.5 inline-block bg-[#2e7d32] rounded-sm shadow-sm"></span> For (81%)</td>
+<td class="font-mono-data text-mono-data text-status-valid px-3 py-3 text-right font-semibold">0.92</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="font-mono-data text-mono-data text-on-surface px-3 py-3 font-medium">MWS_108</td>
+<td class="font-body-sm text-body-sm text-on-surface-variant px-3 py-3 flex items-center gap-2"><span class="w-2.5 h-2.5 inline-block bg-[#0288d1] rounded-sm shadow-sm"></span> Wat (45%)</td>
+<td class="font-mono-data text-mono-data text-status-review px-3 py-3 text-right font-semibold">0.65</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="font-mono-data text-mono-data text-on-surface px-3 py-3 font-medium">MWS_112</td>
+<td class="font-body-sm text-body-sm text-on-surface-variant px-3 py-3 flex items-center gap-2"><span class="w-2.5 h-2.5 inline-block bg-[#757575] rounded-sm shadow-sm"></span> Bar (55%)</td>
+<td class="font-mono-data text-mono-data text-status-suspicious px-3 py-3 text-right font-semibold">0.48</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="font-mono-data text-mono-data text-on-surface px-3 py-3 font-medium">MWS_115</td>
+<td class="font-body-sm text-body-sm text-on-surface-variant px-3 py-3 flex items-center gap-2"><span class="w-2.5 h-2.5 inline-block bg-[#d32f2f] rounded-sm shadow-sm"></span> Built (90%)</td>
+<td class="font-mono-data text-mono-data text-status-valid px-3 py-3 text-right font-semibold">0.95</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="font-mono-data text-mono-data text-on-surface px-3 py-3 font-medium">MWS_116</td>
+<td class="font-body-sm text-body-sm text-on-surface-variant px-3 py-3 flex items-center gap-2"><span class="w-2.5 h-2.5 inline-block bg-[#ed6c02] rounded-sm shadow-sm"></span> Agri (72%)</td>
+<td class="font-mono-data text-mono-data text-status-valid px-3 py-3 text-right font-semibold">0.82</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="font-mono-data text-mono-data text-on-surface px-3 py-3 font-medium">MWS_119</td>
+<td class="font-body-sm text-body-sm text-on-surface-variant px-3 py-3 flex items-center gap-2"><span class="w-2.5 h-2.5 inline-block bg-[#ed6c02] rounded-sm shadow-sm"></span> Agri (58%)</td>
+<td class="font-mono-data text-mono-data text-status-review px-3 py-3 text-right font-semibold">0.71</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex gap-2 shrink-0 pt-1">
+<button class="flex-1 bg-surface-container-lowest border border-strong text-on-surface hover:bg-surface-container font-label-md text-label-md py-2.5 px-3 flex items-center justify-center gap-2 transition-colors focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary rounded-DEFAULT shadow-sm">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export CSV
+                    </button>
+<button class="flex-1 bg-primary border border-primary text-on-primary hover:bg-primary-container font-label-md text-label-md py-2.5 px-3 flex items-center justify-center gap-2 transition-colors rounded-DEFAULT shadow-sm hover:shadow-md">
+<span class="material-symbols-outlined text-[18px]">map</span>
+                        View Map
+                    </button>
+</div>
+<div class="text-center pb-1 pt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Algorithm: Random Forest classification</span>
+</div>
+</div>
+</div>
+</main>
+</body></html>
