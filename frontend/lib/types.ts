@@ -501,3 +501,65 @@ export interface WatershedCropAdvisory {
   conservation_practices: string[]
   status: DataStatus
 }
+
+// ---------------------------------------------------------------------------
+// Ask JalDrishti AI Q&A Types
+// ---------------------------------------------------------------------------
+
+export type EvidenceSourceType =
+  | 'official_risk_engine'
+  | 'model_derived'
+  | 'observed_spatial'
+  | 'observed_field'
+  | 'simulated_telemetry'
+
+export interface EvidenceItemRecord {
+  id: string
+  metric: string
+  value: any
+  unit?: string | null
+  source_type: EvidenceSourceType
+  source: string
+  provenance: string
+  coverage_or_notes?: string | null
+}
+
+export interface ClaimItem {
+  claim_text: string
+  evidence_id: string
+  claimed_value?: any
+  verified: boolean
+  verification_notes?: string | null
+}
+
+export interface ValidationDetails {
+  schema_valid: boolean
+  evidence_ids_valid: boolean
+  numerical_claims_valid: boolean
+  risk_category_valid: boolean
+  disclosures_valid: boolean
+  unsupported_claims_rejected: boolean
+  reasons: string[]
+}
+
+export interface AskRequest {
+  mws_code?: string
+  mws_id?: string
+  question: string
+}
+
+export interface AskResponse {
+  status: DataStatus
+  mws_id: string
+  mws_code: string
+  question: string
+  answer: string
+  evidence_used: EvidenceItemRecord[]
+  claims: ClaimItem[]
+  disclosures: string[]
+  validation_passed: boolean
+  validation_details: ValidationDetails
+  fallback_used: boolean
+  model_name: string
+}
+

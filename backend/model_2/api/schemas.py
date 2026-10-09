@@ -429,3 +429,62 @@ class WatershedCropAdvisory(BaseModel):
     conservation_practices: List[str]
     status: DataStatus = "available"
 
+
+# ---------------------------------------------------------------------------
+# Ask JalDrishti (Gemma 4 Q&A with Real Watershed Evidence) Schemas
+# ---------------------------------------------------------------------------
+
+EvidenceSourceType = Literal[
+    "official_risk_engine",
+    "model_derived",
+    "observed_spatial",
+    "observed_field",
+    "simulated_telemetry",
+]
+
+class EvidenceItemRecord(BaseModel):
+    id: str = Field(description="Unique deterministic evidence ID, e.g. ev_final_risk, ev_lulc_agri")
+    metric: str = Field(description="Human readable metric label")
+    value: Any = Field(description="Strictly retrieved metric value, preserving types")
+    unit: Optional[str] = Field(None, description="Physical or index unit, e.g. /100, %, km², mm, m")
+    source_type: EvidenceSourceType = Field(description="Categorical provenance classification")
+    source: str = Field(description="Module or upstream system name")
+    provenance: str = Field(description="Exact file, layer, or methodology citation")
+    coverage_or_notes: Optional[str] = Field(None, description="Spatial coverage or calibration note")
+
+class ClaimItem(BaseModel):
+    claim_text: str = Field(description="Textual statement or assertion")
+    evidence_id: str = Field(description="Referenced evidence ID from the retrieved bundle")
+    claimed_value: Optional[Any] = Field(None, description="Specific numerical or categorical value claimed")
+    verified: bool = Field(True, description="Whether claim passed deterministic verification")
+    verification_notes: Optional[str] = Field(None, description="Explanation of verification or discrepancy")
+
+class ValidationDetails(BaseModel):
+    schema_valid: bool = Field(..., description="Whether output JSON matches expected structure")
+    evidence_ids_valid: bool = Field(..., description="Whether all cited evidence IDs exist in bundle")
+    numerical_claims_valid: bool = Field(..., description="Whether numerical claims match retrieved evidence within tolerance")
+    risk_category_valid: bool = Field(..., description="Whether risk category agrees with official engine thresholds")
+    disclosures_valid: bool = Field(..., description="Whether missing or simulated data gaps are disclosed")
+    unsupported_claims_rejected: bool = Field(..., description="Whether ungrounded statements are rejected")
+    reasons: List[str] = Field(default_factory=list, description="List of validation errors or warnings")
+
+class AskRequest(BaseModel):
+    mws_code: Optional[str] = Field(None, description="Micro-watershed hydrological display code (e.g. 4D4F2m3)")
+    mws_id: Optional[str] = Field(None, description="Micro-watershed canonical GIS ID (e.g. g_mws.240575)")
+    question: str = Field(..., description="Natural language question regarding the micro-watershed")
+
+class AskResponse(BaseModel):
+    status: DataStatus = "available"
+    mws_id: str = Field(description="Canonical GIS ID")
+    mws_code: str = Field(description="Hydrological display code")
+    question: str = Field(description="Original user question")
+    answer: str = Field(description="Verified answer or deterministic fallback")
+    evidence_used: List[EvidenceItemRecord] = Field(default_factory=list, description="Retrieved evidence items cited or available")
+    claims: List[ClaimItem] = Field(default_factory=list, description="Extracted claims with verification status")
+    disclosures: List[str] = Field(default_factory=list, description="Disclosures regarding data gaps or simulation status")
+    validation_passed: bool = Field(..., description="Whether the response passed all deterministic checks")
+    validation_details: ValidationDetails = Field(..., description="Granular breakdown of deterministic validation checks")
+    fallback_used: bool = Field(False, description="True if answer is a deterministic fallback constructed from trusted data")
+    model_name: str = Field(description="Identifier of model used")
+
+

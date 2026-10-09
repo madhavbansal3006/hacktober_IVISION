@@ -51,6 +51,7 @@ import { LanguageSelector } from '../components/LanguageSelector'
 import { Translations } from '../lib/i18n/types'
 import { CropSuggestions } from '../components/CropSuggestions'
 import { CropIntelligenceScreen } from '../components/CropIntelligenceScreen'
+import { AskJalDrishti } from '../components/AskJalDrishti'
 import { Language, translations } from '../lib/translations'
 
 type Mode = 'simulation' | 'live'
@@ -2994,6 +2995,12 @@ function MicroWatershedProfile({
           </div>
         </div>
       </Panel>
+
+      {/* Ask JalDrishti: Gemma 4 AI Grounded Q&A Panel */}
+      <AskJalDrishti
+        mwsCode={selectedProfile?.MWS || '4D4F2m3'}
+        mwsId={selectedProfile?.id || 'g_mws.240575'}
+      />
 
       {/* SECTION 6: DATA PROVENANCE BANNER */}
       <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 6, padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 6, marginTop: 4 }}>

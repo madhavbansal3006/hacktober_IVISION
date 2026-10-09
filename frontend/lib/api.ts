@@ -14,6 +14,8 @@ import {
   BasinReport,
   BatchUploadResponse,
   WatershedCropAdvisory,
+  AskRequest,
+  AskResponse,
 } from './types'
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
@@ -177,4 +179,12 @@ export function getBasinReportCsvUrl(): string {
 export async function fetchCropAdvisory(mwsIdentifier: string): Promise<ApiResponse<WatershedCropAdvisory>> {
   return safeFetch<WatershedCropAdvisory>(`/api/v1/crops/${encodeURIComponent(mwsIdentifier)}`)
 }
+
+export async function askJalDrishti(req: AskRequest): Promise<ApiResponse<AskResponse>> {
+  return safeFetch<AskResponse>('/api/v1/ai/ask', {
+    method: 'POST',
+    body: JSON.stringify(req),
+  })
+}
+
 

@@ -24,6 +24,7 @@ from .routes.water_quality import router as water_quality_router
 from .routes.reports import router as reports_router
 from .routes.database import router as database_router
 from .routes.crops import router as crops_router
+from .routes.ai import router as ai_router
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("WatershedAPI")
@@ -106,6 +107,7 @@ app.include_router(water_quality_router, prefix="/api/v1")
 app.include_router(reports_router, prefix="/api/v1")
 app.include_router(database_router, prefix="/api/v1")
 app.include_router(crops_router, prefix="/api/v1")
+app.include_router(ai_router, prefix="/api/v1")
 
 @app.get("/api/v1/lulc/summary", response_model=LULCSummary, tags=["LULC"])
 def get_lulc_summary_root(request: Request):
@@ -144,6 +146,7 @@ def home():
             "database_health": "/api/v1/health/db",
             "database_summary": "/api/v1/db/summary",
             "database_watersheds": "/api/v1/db/watersheds",
+            "ask_ai": "POST /api/v1/ai/ask",
             "legacy_iot": "POST /iot-data"
         }
     }
