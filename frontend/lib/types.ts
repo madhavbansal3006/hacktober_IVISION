@@ -223,6 +223,7 @@ export interface EvidenceItem {
 
 export type Screen =
   | 'Dashboard'
+  | 'Ask JalDrishti AI'
   | 'Micro-Watershed Profile'
   | 'Crop Intelligence'
   | 'GIS Explorer'

@@ -51,12 +51,13 @@ import { LanguageSelector } from '../components/LanguageSelector'
 import { Translations } from '../lib/i18n/types'
 import { CropSuggestions } from '../components/CropSuggestions'
 import { CropIntelligenceScreen } from '../components/CropIntelligenceScreen'
-import { AskJalDrishti } from '../components/AskJalDrishti'
+import { AskJalDrishti, AskJalDrishtiScreen } from '../components/AskJalDrishti'
 import { Language, translations } from '../lib/translations'
 
 type Mode = 'simulation' | 'live'
 type Screen =
   | 'Dashboard'
+  | 'Ask JalDrishti AI'
   | 'Water Quality'
   | 'Crop Intelligence'
   | 'IoT Network'
@@ -68,6 +69,7 @@ type Screen =
 
 const screens: Screen[] = [
   'Dashboard',
+  'Ask JalDrishti AI',
   'Water Quality',
   'Crop Intelligence',
   'IoT Network',
@@ -80,6 +82,7 @@ const screens: Screen[] = [
 
 const navIcons: Record<Screen, string> = {
   Dashboard: '▦',
+  'Ask JalDrishti AI': '✦',
   'Water Quality': '≋',
   'Crop Intelligence': '🌱',
   'IoT Network': '⌁',
@@ -230,7 +233,7 @@ function Header({
         </div>
       </div>
       <nav className="topnav" aria-label="Primary navigation">
-        {['Dashboard', 'Crop Intelligence', 'Water Quality', 'GIS Explorer', 'Reports & Exports'].map((item) => (
+        {['Dashboard', 'Ask JalDrishti AI', 'Crop Intelligence', 'Water Quality', 'GIS Explorer', 'Reports & Exports'].map((item) => (
           <button
             className={screen === item ? 'active' : ''}
             key={item}
@@ -302,6 +305,7 @@ function Sidebar({
 
   const screenLabels: Record<Screen, string> = {
     Dashboard: dict.sidebar.dashboard,
+    'Ask JalDrishti AI': t.screens?.['Ask JalDrishti AI'] || 'Ask JalDrishti AI',
     'Crop Intelligence': t.screens?.['Crop Intelligence'] || 'Crop Intelligence',
     'Water Quality': dict.sidebar.waterQuality,
     'IoT Network': dict.sidebar.iotNetwork,
@@ -945,6 +949,100 @@ function Dashboard({
         </Panel>
       </div>
 
+      {/* Ask JalDrishti AI Prominent Dashboard Card */}
+      <div
+        className="panel"
+        style={{
+          background: 'linear-gradient(135deg, #f0fdf4 0%, #ffffff 55%, #f8fafc 100%)',
+          border: '1.5px solid #86efac',
+          borderRadius: '8px',
+          padding: '16px 20px',
+          marginBottom: '20px',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px',
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+              <span
+                style={{
+                  fontSize: '10.5px',
+                  fontWeight: 800,
+                  letterSpacing: '0.06em',
+                  color: '#15803d',
+                  background: '#dcfce7',
+                  padding: '2px 8px',
+                  borderRadius: '4px',
+                }}
+              >
+                ✦ GEMMA 4 AI DECISION SUPPORT
+              </span>
+              <span style={{ fontSize: '10.5px', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
+                Target: {selectedProfile ? `${selectedProfile.MWS} (${selectedProfile.id})` : 'All 66 Micro-Watersheds'}
+              </span>
+            </div>
+            <h3 style={{ fontSize: '16px', fontWeight: 700, margin: 0, color: 'var(--foreground)' }}>
+              Ask JalDrishti: Grounded AI Watershed Intelligence
+            </h3>
+            <p style={{ fontSize: '12px', color: 'var(--muted)', margin: '4px 0 0 0', maxWidth: '750px' }}>
+              Ask natural-language questions about risk drivers, soil moisture, crop recommendations, and interventions. Every answer is mathematically verified against Model 2 risk calculations, Sentinel-2 LULC, and GIS boundaries with zero hallucination.
+            </p>
+          </div>
+          <button
+            type="button"
+            className="primary-button"
+            id="launch-ask-jaldrishti-dashboard"
+            onClick={() => setScreen('Ask JalDrishti AI')}
+            style={{
+              background: '#15803d',
+              color: '#ffffff',
+              border: 'none',
+              padding: '9px 18px',
+              borderRadius: '5px',
+              fontSize: '12.5px',
+              fontWeight: 700,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+            }}
+          >
+            <span>✦</span> Open Ask JalDrishti AI →
+          </button>
+        </div>
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', paddingTop: '4px', borderTop: '1px solid #e2e8f0' }}>
+          <span style={{ fontSize: '11px', color: 'var(--muted)', fontWeight: 600 }}>Quick Inquiries:</span>
+          {[
+            'What are the primary risk drivers?',
+            'What interventions are recommended?',
+            'What is the dominant land cover?',
+            'How is water quality performing?',
+          ].map((promptText, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setScreen('Ask JalDrishti AI')}
+              style={{
+                fontSize: '11px',
+                padding: '3px 9px',
+                background: '#ffffff',
+                border: '1px solid #cbd5e1',
+                borderRadius: '4px',
+                color: '#334155',
+                cursor: 'pointer',
+              }}
+            >
+              {promptText} →
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="dashboard-grid">
         <Panel
           title={dict.dashboard.healthIndexChartTitle}
@@ -1558,6 +1656,10 @@ function DetailScreen({
   const [gisMode, setGisMode] = useState<'2D' | '3D'>('2D')
 
   const titles: Record<Screen, [string, string]> = {
+    'Ask JalDrishti AI': [
+      'Ask JalDrishti (Gemma 4)',
+      'Evidence-grounded watershed decision support powered by Gemma 4.',
+    ],
     'Water Quality': [
       dict.subscreens.wqTitle,
       dict.subscreens.wqSubtitle,
@@ -3000,6 +3102,8 @@ function MicroWatershedProfile({
       <AskJalDrishti
         mwsCode={selectedProfile?.MWS || '4D4F2m3'}
         mwsId={selectedProfile?.id || 'g_mws.240575'}
+        watersheds={watersheds}
+        onSelectMws={onSelectMws}
       />
 
       {/* SECTION 6: DATA PROVENANCE BANNER */}
@@ -6708,7 +6812,7 @@ export default function Page() {
   // When switching to Micro-Watershed Profile, Water Quality, or Crop Intelligence, ensure an MWS is selected
   useEffect(() => {
     if (
-      (screen === 'Micro-Watershed Profile' || screen === 'Water Quality' || screen === 'Crop Intelligence') &&
+      (screen === 'Micro-Watershed Profile' || screen === 'Water Quality' || screen === 'Crop Intelligence' || screen === 'Ask JalDrishti AI') &&
       (mws === 'ALL' || !mws) &&
       watersheds.length > 0
     ) {
@@ -6908,6 +7012,15 @@ export default function Page() {
             gisBoundaries={gisBoundaries}
             gisStatus={gisStatus}
             gisError={gisError}
+            watersheds={watersheds}
+            selectedProfile={selectedProfile}
+            onSelectMws={handleSelectMws}
+          />
+        ) : screen === 'Ask JalDrishti AI' ? (
+          <AskJalDrishtiScreen
+            mode={mode}
+            setScreen={setScreen}
+            apiStatus={apiStatus}
             watersheds={watersheds}
             selectedProfile={selectedProfile}
             onSelectMws={handleSelectMws}

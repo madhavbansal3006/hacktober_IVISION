@@ -46,6 +46,7 @@ export const translations: Record<Language, TranslationDictionary> = {
     offlineMws: 'MWS Unavailable (Offline)',
     screens: {
       Dashboard: 'Dashboard',
+      'Ask JalDrishti AI': 'Ask JalDrishti AI',
       'Water Quality': 'Water Quality',
       'Crop Intelligence': 'Crop Intelligence',
       'IoT Network': 'IoT Network',
@@ -90,6 +91,7 @@ export const translations: Record<Language, TranslationDictionary> = {
     offlineMws: 'ಜಲಾನಯನ ಲಭ್ಯವಿಲ್ಲ (ಆಫ್‌ಲೈನ್)',
     screens: {
       Dashboard: 'ನಿಯಂತ್ರಣ ಫಲಕ',
+      'Ask JalDrishti AI': 'ಜಲದೃಷ್ಟಿ AI ಪ್ರಶ್ನಿಸಿ',
       'Water Quality': 'ನೀರಿನ ಗುಣಮಟ್ಟ',
       'Crop Intelligence': 'ಬೆಳೆ ಸಲಹೆ',
       'IoT Network': 'ಐಒಟಿ ಜಾಲ',
